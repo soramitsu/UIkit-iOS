@@ -25,9 +25,15 @@ final class SkrullView: UIView {
 
     private var layers: [CAGradientLayer] = []
 
-    init(size: CGSize, decorations: [Decoration], skeletons: [Skeleton]) {
+    private var fillSkeletonStartColor: UIColor
+    private var fillSkeletonEndColor: UIColor
+
+    init(size: CGSize, decorations: [Decoration], skeletons: [Skeleton],
+         fillSkeletonStartColor: UIColor?, fillSkeletonEndColor: UIColor?) {
         self.decorations = decorations
         self.skeletons = skeletons
+        self.fillSkeletonStartColor = fillSkeletonStartColor ?? UIColor.lightGray
+        self.fillSkeletonEndColor = fillSkeletonEndColor ?? UIColor.gray
 
         super.init(frame: CGRect(origin: .zero, size: size))
 
@@ -53,8 +59,8 @@ final class SkrullView: UIView {
     }
 
     private func createLayer(for skeleton: Skeleton) -> CAGradientLayer {
-        let startColor = skeleton.startColor?.cgColor ?? UIColor.lightGray.cgColor
-        let endColor = skeleton.endColor?.cgColor ?? UIColor.gray.cgColor
+        let startColor = skeleton.startColor?.cgColor ?? fillSkeletonStartColor.cgColor
+        let endColor = skeleton.endColor?.cgColor ?? fillSkeletonEndColor.cgColor
 
         let skeletonLayer = CAGradientLayer()
 

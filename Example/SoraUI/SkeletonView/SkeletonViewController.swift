@@ -48,40 +48,34 @@ final class SkeletonViewController: UIViewController, AdaptiveDesignable {
                                 SingleSkeleton(position: CGPoint(x: 0.5, y: 0.22),
                                                size: CGSize(width: 0.95, height: 0.4))
                                     .round(CGSize(width: 10.0 / (itemSize.width * 0.95), height: 10.0 / (itemSize.height * 0.4)),
-                                           mode: [.topLeft, .topRight])
-                                    .fillStart(UIColor(white: 230.0 / 255.0, alpha: 1.0))
-                                    .fillEnd(UIColor(white: 230.0 / 255.0, alpha: 0.8)),
+                                           mode: [.topLeft, .topRight]),
 
                                 SingleSkeleton(position: CGPoint(x: 0.5, y: 0.5), size: CGSize(width: 0.9, height: 0.05))
-                                    .round()
-                                    .fillStart(UIColor(white: 230.0 / 255.0, alpha: 1.0))
-                                    .fillEnd(UIColor(white: 230.0 / 255.0, alpha: 0.8)),
+                                    .round(),
 
                                 MultilineSkeleton(startLinePosition: CGPoint(x: 0.5, y: 0.6),
                                                   lineSize: CGSize(width: 0.9, height: 0.025),
                                                   count: 3,
                                                   spacing: 0.025)
                                     .round()
-                                    .fillStart(UIColor(white: 230.0 / 255.0, alpha: 1.0))
-                                    .fillEnd(UIColor(white: 230.0 / 255.0, alpha: 0.8))
                                     .lastLine(fraction: 0.3),
 
                                 SingleSkeleton(position: CGPoint(x: 0.5, y: 0.8), size: CGSize(width: 0.9, height: 0.04))
-                                    .round()
-                                    .fillStart(UIColor(white: 230.0 / 255.0, alpha: 1.0))
-                                    .fillEnd(UIColor(white: 230.0 / 255.0, alpha: 0.8)),
+                                    .round(),
 
                                 SingleSkeleton(position: CGPoint(x: 0.08, y: 0.9), size: CGSize(width: 0.05, height: 0.05))
                                     .round()
-                                    .fillStart(UIColor(white: 230.0 / 255.0, alpha: 1.0))
-                                    .fillEnd(UIColor(white: 230.0 / 255.0, alpha: 0.8)),
+                                    .fillStart(UIColor(red: 208.0 / 255.0, green: 2.0 / 255.0, blue: 27.0 / 255.0, alpha: 1.0))
+                                    .fillEnd(UIColor(red: 208.0 / 255.0, green: 2.0 / 255.0, blue: 27.0 / 255.0, alpha: 0.9)),
 
                                 SingleSkeleton(position: CGPoint(x: 0.92, y: 0.9), size: CGSize(width: 0.05, height: 0.05))
                                     .round()
-                                    .fillStart(UIColor(white: 230.0 / 255.0, alpha: 1.0))
-                                    .fillEnd(UIColor(white: 230.0 / 255.0, alpha: 0.8))
+                                    .fillStart(UIColor(red: 115.0 / 255.0, green: 168.0 / 255.0, blue: 166.0 / 255.0, alpha: 1.0))
+                                    .fillEnd(UIColor(red: 115.0 / 255.0, green: 168.0 / 255.0, blue: 166.0 / 255.0, alpha: 0.9))
             ]
         )
+            .fillSkeletonStart(UIColor(white: 230.0 / 255.0, alpha: 1.0))
+            .fillSkeletonEnd(color: UIColor(white: 230.0 / 255.0, alpha: 0.8))
             .insets(containerInsets)
             .replicateVertically(count: 3, spacing: verticalSpacing)
 

@@ -17,11 +17,25 @@ public final class Skrull {
     private(set) var columnsCount: UInt32 = 1
     private(set) var verticalSpacing: CGFloat = 8.0
     private(set) var rowsCount: UInt32 = 1
+    private(set) var fillSkeletonStartColor: UIColor?
+    private(set) var fillSkeletonEndColor: UIColor?
 
     public init(size: CGSize, decorations: [Decorable], skeletons: [Skeletonable]) {
         self.decorations = decorations.flatMap { $0.decorations }
         self.skeletons = skeletons.flatMap { $0.skeletons }
         self.size = size
+    }
+
+    public func fillSkeletonStart(_ color: UIColor) -> Self {
+        self.fillSkeletonStartColor = color
+
+        return self
+    }
+
+    public func fillSkeletonEnd(color: UIColor) -> Self {
+        self.fillSkeletonEndColor = color
+
+        return self
     }
 
     public func insets(_ insets: UIEdgeInsets) -> Self {
@@ -51,7 +65,11 @@ public final class Skrull {
 
         let items: [[SkrullableView]] = (0..<rowsCount).map { row in
             return (0..<columnsCount).map { column in
-                let view = SkrullView(size: size, decorations: decorations, skeletons: skeletons)
+                let view = SkrullView(size: size,
+                                      decorations: decorations,
+                                      skeletons: skeletons,
+                                      fillSkeletonStartColor: fillSkeletonStartColor,
+                                      fillSkeletonEndColor: fillSkeletonEndColor)
                 return view
             }
         }
