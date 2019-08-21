@@ -34,9 +34,9 @@ final class SkeletonViewController: UIViewController, AdaptiveDesignable {
     private func configure() {
         let skrull = Skrull(size: itemSize,
                             decorations: [
-                                SingleDecoration(position: CGPoint(x: 0.5, y: 0.5), size: CGSize(width: 0.95, height: 0.95))
+                                SingleDecoration(position: CGPoint.skrullCenter, size: CGSize(width: 0.95, height: 0.95))
                                     .fill(.white)
-                                    .round(CGSize(width: 10.0 / itemSize.width, height: 10.0 / itemSize.height))
+                                    .round(CGSize(width: itemSize.skrullMapX(10.0), height: itemSize.skrullMapY(10.0)))
                                     .shadow(UIColor(red: 124.0 / 255.0,
                                                     green: 168.0 / 255.0,
                                                     blue: 158.0 / 255.0,
@@ -50,7 +50,7 @@ final class SkeletonViewController: UIViewController, AdaptiveDesignable {
                                     .round(CGSize(width: 10.0 / (itemSize.width * 0.95), height: 10.0 / (itemSize.height * 0.4)),
                                            mode: [.topLeft, .topRight]),
 
-                                SingleSkeleton(position: CGPoint(x: 0.5, y: 0.5), size: CGSize(width: 0.9, height: 0.05))
+                                SingleSkeleton(position: CGPoint.skrullCenter, size: CGSize(width: 0.9, height: 0.05))
                                     .round(),
 
                                 MultilineSkeleton(startLinePosition: CGPoint(x: 0.5, y: 0.6),
