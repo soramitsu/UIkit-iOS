@@ -36,7 +36,7 @@ final class SkeletonViewController: UIViewController, AdaptiveDesignable {
                             decorations: [
                                 SingleDecoration(position: CGPoint(x: 0.5, y: 0.5), size: CGSize(width: 0.95, height: 0.95))
                                     .fill(.white)
-                                    .round(CGSize(width: 10.0 / (300 * 0.95), height: 10.0 / (300 * 0.95)))
+                                    .round(CGSize(width: 10.0 / itemSize.width, height: 10.0 / itemSize.height))
                                     .shadow(UIColor(red: 124.0 / 255.0,
                                                     green: 168.0 / 255.0,
                                                     blue: 158.0 / 255.0,
@@ -47,7 +47,7 @@ final class SkeletonViewController: UIViewController, AdaptiveDesignable {
                             skeletons: [
                                 SingleSkeleton(position: CGPoint(x: 0.5, y: 0.22),
                                                size: CGSize(width: 0.95, height: 0.4))
-                                    .round(CGSize(width: 10.0 / (300 * 0.95), height: 10.0 / (300 * 0.95)),
+                                    .round(CGSize(width: 10.0 / (itemSize.width * 0.95), height: 10.0 / (itemSize.height * 0.4)),
                                            mode: [.topLeft, .topRight])
                                     .fillStart(UIColor(white: 230.0 / 255.0, alpha: 1.0))
                                     .fillEnd(UIColor(white: 230.0 / 255.0, alpha: 0.8)),
@@ -57,8 +57,8 @@ final class SkeletonViewController: UIViewController, AdaptiveDesignable {
                                     .fillStart(UIColor(white: 230.0 / 255.0, alpha: 1.0))
                                     .fillEnd(UIColor(white: 230.0 / 255.0, alpha: 0.8)),
 
-                                MultilineSkeleton(startPosition: CGPoint(x: 0.5, y: 0.6),
-                                                  size: CGSize(width: 0.9, height: 0.025),
+                                MultilineSkeleton(startLinePosition: CGPoint(x: 0.5, y: 0.6),
+                                                  lineSize: CGSize(width: 0.9, height: 0.025),
                                                   count: 3,
                                                   spacing: 0.025)
                                     .round()

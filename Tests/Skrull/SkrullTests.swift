@@ -65,8 +65,8 @@ class SkrullTests: XCTestCase {
         let skrull = Skrull(size: skrullSize,
                             decorations: [],
                             skeletons: [
-                                MultilineSkeleton(startPosition: skeletonOrigin,
-                                                  size: skeletonSize,
+                                MultilineSkeleton(startLinePosition: skeletonOrigin,
+                                                  lineSize: skeletonSize,
                                                   count: numberOfLines,
                                                   spacing: spacing)
                                     .round(cornerRadii, mode: roundingMode)

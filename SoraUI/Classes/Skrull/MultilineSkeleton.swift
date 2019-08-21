@@ -6,8 +6,8 @@
 import Foundation
 
 public final class MultilineSkeleton {
-    let startPosition: CGPoint
-    let size: CGSize
+    let startLinePosition: CGPoint
+    let lineSize: CGSize
     let count: UInt8
     let spacing: CGFloat
 
@@ -19,9 +19,9 @@ public final class MultilineSkeleton {
 
     private(set) var lastLineFraction: CGFloat = 1.0
 
-    public init(startPosition: CGPoint, size: CGSize, count: UInt8, spacing: CGFloat) {
-        self.startPosition = startPosition
-        self.size = size
+    public init(startLinePosition: CGPoint, lineSize: CGSize, count: UInt8, spacing: CGFloat) {
+        self.startLinePosition = startLinePosition
+        self.lineSize = lineSize
         self.count = count
         self.spacing = spacing
     }
@@ -59,14 +59,14 @@ extension MultilineSkeleton: Skeletonable {
             let position: CGPoint
 
             if index < count - 1 {
-                skeletonSize = size
-                position = CGPoint(x: startPosition.x,
-                                   y: startPosition.y + CGFloat(index) * (skeletonSize.height + spacing))
+                skeletonSize = lineSize
+                position = CGPoint(x: startLinePosition.x,
+                                   y: startLinePosition.y + CGFloat(index) * (skeletonSize.height + spacing))
             } else {
-                skeletonSize = CGSize(width: size.width * lastLineFraction,
-                                      height: size.height)
-                position = CGPoint(x: startPosition.x - size.width / 2.0 + skeletonSize.width / 2.0,
-                                   y: startPosition.y + CGFloat(index) * (skeletonSize.height + spacing))
+                skeletonSize = CGSize(width: lineSize.width * lastLineFraction,
+                                      height: lineSize.height)
+                position = CGPoint(x: startLinePosition.x - lineSize.width / 2.0 + skeletonSize.width / 2.0,
+                                   y: startLinePosition.y + CGFloat(index) * (skeletonSize.height + spacing))
             }
 
             return Skeleton(position: position,
