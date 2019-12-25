@@ -13,7 +13,9 @@ open class PlainSegmentedControl: UIControl {
 
     open var titles: [String] = ["Segment1", "Segment2"] {
         didSet {
-            _selectedSegmentIndex = titles.count > 0 ? 0 : -1
+            if oldValue.count != titles.count {
+                _selectedSegmentIndex = titles.count > 0 ? 0 : -1
+            }
 
             clearSegments()
             buildSegments()

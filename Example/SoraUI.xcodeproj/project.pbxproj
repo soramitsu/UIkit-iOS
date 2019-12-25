@@ -28,6 +28,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		84131DAA22BC1BF90091A0A6 /* SkrullTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84131DA922BC1BF90091A0A6 /* SkrullTests.swift */; };
+		843BBB0B23B347AD0047100A /* PlainSegmentedControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843BBB0A23B347AD0047100A /* PlainSegmentedControlTests.swift */; };
 		843F0A8722BC0E10005B369F /* SkeletonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843F0A8622BC0E10005B369F /* SkeletonViewController.swift */; };
 		843F0A8922BC0E36005B369F /* SkeletonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843F0A8822BC0E36005B369F /* SkeletonViewController.xib */; };
 		84530A32223A968F00AD7598 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84530A31223A968F00AD7598 /* DetailsViewController.swift */; };
@@ -79,6 +80,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B28FB29CA745121259B85F7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		84131DA922BC1BF90091A0A6 /* SkrullTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkrullTests.swift; sourceTree = "<group>"; };
+		843BBB0A23B347AD0047100A /* PlainSegmentedControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlainSegmentedControlTests.swift; path = ../PlainSegmentedControl/PlainSegmentedControlTests.swift; sourceTree = "<group>"; };
 		843F0A8622BC0E10005B369F /* SkeletonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonViewController.swift; sourceTree = "<group>"; };
 		843F0A8822BC0E36005B369F /* SkeletonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonViewController.xib; sourceTree = "<group>"; };
 		84530A31223A968F00AD7598 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				84131DA922BC1BF90091A0A6 /* SkrullTests.swift */,
+				843BBB0A23B347AD0047100A /* PlainSegmentedControlTests.swift */,
 			);
 			name = Skrull;
 			path = ../../Tests/Skrull;
@@ -525,6 +528,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843BBB0B23B347AD0047100A /* PlainSegmentedControlTests.swift in Sources */,
 				84131DAA22BC1BF90091A0A6 /* SkrullTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
