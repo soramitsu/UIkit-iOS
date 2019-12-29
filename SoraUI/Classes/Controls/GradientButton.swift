@@ -5,8 +5,6 @@
 
 import UIKit
 
-// swiftlint:disable valid_ibinspectable
-
 /**
  *  Subclass of `BackgroundedContentControl` designed to provide button that contains
  *  gradient background and content view consisting of title and icon.
@@ -14,7 +12,7 @@ import UIKit
  *  Class supports `IBDesignable` protocol to provide appearance via Interface Builder.
  */
 @IBDesignable
-class GradientButton: BackgroundedContentControl {
+open class GradientButton: BackgroundedContentControl {
     /// Returns content view that consists of title and icon
     @IBInspectable
     public var imageWithTitleView: ImageWithTitleView? {
