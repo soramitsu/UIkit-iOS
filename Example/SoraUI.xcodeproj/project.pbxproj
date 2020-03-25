@@ -380,6 +380,7 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = YLWWUD25VZ;
 						LastSwiftMigration = 1020;
+						ProvisioningStyle = Manual;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -673,6 +674,7 @@
 			baseConfigurationReference = 12A2971F5E62F140FF401B1A /* Pods-SoraUI_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YLWWUD25VZ;
 				INFOPLIST_FILE = SoraUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -680,6 +682,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.jp.soramitsu.soraui-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = ridev;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -689,6 +692,8 @@
 			baseConfigurationReference = 071248602287C2091D46C2C1 /* Pods-SoraUI_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YLWWUD25VZ;
 				INFOPLIST_FILE = SoraUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -696,6 +701,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.jp.soramitsu.soraui-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = ridev;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
