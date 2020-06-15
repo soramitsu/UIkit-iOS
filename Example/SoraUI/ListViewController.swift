@@ -4,6 +4,7 @@
 */
 
 import UIKit
+import SoraUI
 
 final class ListViewController: UITableViewController {
     enum ListItemType: Int {
@@ -18,6 +19,7 @@ final class ListViewController: UITableViewController {
         case emptyState
         case modalPresentation
         case skeleton
+        case modalDraggable
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -62,6 +64,11 @@ final class ListViewController: UITableViewController {
             let controller = SkeletonViewController(nibName: "SkeletonViewController",
                                                     bundle: Bundle.main)
             navigationController?.pushViewController(controller, animated: true)
+        case .modalDraggable:
+            let child = ChildViewController()
+            let style = DraggableController.DraggableStyle(backgroundColor: .clear, headerViewBackgroundColor: .white, headerViewHeight: 30, panViewBackgroundColor: .gray, panViewSize: CGSize(width: 100, height: 10), topHeaderCornerRadius: 10)
+            let modalDraggablle = DraggableController(child: child, style: style)
+            navigationController?.present(modalDraggablle, animated: true, completion: nil)
         }
     }
 }

@@ -1,32 +1,34 @@
 PODS:
-  - SoraUI (1.8.10):
-    - SoraUI/AdaptiveDesign (= 1.8.10)
-    - SoraUI/Animator (= 1.8.10)
-    - SoraUI/Camera (= 1.8.10)
-    - SoraUI/Controls (= 1.8.10)
-    - SoraUI/DetailsView (= 1.8.10)
-    - SoraUI/EmptyState (= 1.8.10)
-    - SoraUI/LoadingView (= 1.8.10)
-    - SoraUI/ModalInputPresentation (= 1.8.10)
-    - SoraUI/PageLoader (= 1.8.10)
-    - SoraUI/PinView (= 1.8.10)
-    - SoraUI/Skrull (= 1.8.10)
-  - SoraUI/AdaptiveDesign (1.8.10)
-  - SoraUI/Animator (1.8.10)
-  - SoraUI/Camera (1.8.10)
-  - SoraUI/Controls (1.8.10)
-  - SoraUI/DetailsView (1.8.10):
+  - SoraUI (1.9.0):
+    - SoraUI/AdaptiveDesign (= 1.9.0)
+    - SoraUI/Animator (= 1.9.0)
+    - SoraUI/Camera (= 1.9.0)
+    - SoraUI/Controls (= 1.9.0)
+    - SoraUI/DetailsView (= 1.9.0)
+    - SoraUI/EmptyState (= 1.9.0)
+    - SoraUI/LoadingView (= 1.9.0)
+    - SoraUI/ModalDraggable (= 1.9.0)
+    - SoraUI/ModalInputPresentation (= 1.9.0)
+    - SoraUI/PageLoader (= 1.9.0)
+    - SoraUI/PinView (= 1.9.0)
+    - SoraUI/Skrull (= 1.9.0)
+  - SoraUI/AdaptiveDesign (1.9.0)
+  - SoraUI/Animator (1.9.0)
+  - SoraUI/Camera (1.9.0)
+  - SoraUI/Controls (1.9.0)
+  - SoraUI/DetailsView (1.9.0):
     - SoraUI/Controls
-  - SoraUI/EmptyState (1.8.10):
+  - SoraUI/EmptyState (1.9.0):
     - SoraUI/Animator
-  - SoraUI/LoadingView (1.8.10):
+  - SoraUI/LoadingView (1.9.0):
     - SoraUI/Controls
-  - SoraUI/ModalInputPresentation (1.8.10):
+  - SoraUI/ModalDraggable (1.9.0)
+  - SoraUI/ModalInputPresentation (1.9.0):
     - SoraUI/Animator
-  - SoraUI/PageLoader (1.8.10)
-  - SoraUI/PinView (1.8.10):
+  - SoraUI/PageLoader (1.9.0)
+  - SoraUI/PinView (1.9.0):
     - SoraUI/Controls
-  - SoraUI/Skrull (1.8.10)
+  - SoraUI/Skrull (1.9.0)
 
 DEPENDENCIES:
   - SoraUI (from `../`)

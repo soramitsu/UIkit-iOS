@@ -37,6 +37,7 @@
 		84FA009122699DFF005DA950 /* EmptyStateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA009022699DFF005DA950 /* EmptyStateViewController.xib */; };
 		84FA6E19228965FB003B9D40 /* ModalPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6E18228965FB003B9D40 /* ModalPresentationViewController.swift */; };
 		84FA6E1B22898714003B9D40 /* ModalPresentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA6E1A22898714003B9D40 /* ModalPresentationViewController.xib */; };
+		F8F85F6D2497746B003FDC3F /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F85F6C2497746B003FDC3F /* ChildViewController.swift */; };
 		F9487713BAF471CD752C3343 /* Pods_SoraUI_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD9485C09127F44282000DF /* Pods_SoraUI_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,7 @@
 		98170E6FEAEEED23A46C185D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		BFD9485C09127F44282000DF /* Pods_SoraUI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoraUI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3368F1B0455F39A2EEAD047 /* Pods-SoraUI_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoraUI_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoraUI_Tests/Pods-SoraUI_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		F8F85F6C2497746B003FDC3F /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 		607FACD21AFB9204008FA782 /* Example for SoraUI */ = {
 			isa = PBXGroup;
 			children = (
+				F8F85F6B24977456003FDC3F /* ChildViewColntroller */,
 				843F0A8522BC0DEF005B369F /* SkeletonView */,
 				84FA6E17228965D7003B9D40 /* ModalPresentation */,
 				84FA008D22699DCF005DA950 /* EmptyStateViewController */,
@@ -323,6 +326,14 @@
 				071E5C489354557C0094BB90 /* Pods_SoraUI_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F8F85F6B24977456003FDC3F /* ChildViewColntroller */ = {
+			isa = PBXGroup;
+			children = (
+				F8F85F6C2497746B003FDC3F /* ChildViewController.swift */,
+			);
+			path = ChildViewColntroller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -516,6 +527,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				84FA6E19228965FB003B9D40 /* ModalPresentationViewController.swift in Sources */,
 				027A3D8521C14A670020B66A /* GradientButtonsViewController.swift in Sources */,
+				F8F85F6D2497746B003FDC3F /* ChildViewController.swift in Sources */,
 				028547E1220886CD00A40F41 /* SegmentedControlViewController.swift in Sources */,
 				84FA008F22699DEF005DA950 /* EmptyStateViewController.swift in Sources */,
 				027A3D9221C150B30020B66A /* PincodeViewController.swift in Sources */,
