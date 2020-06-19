@@ -176,10 +176,10 @@ open class BackgroundedContentControl: UIControl {
         guard let currentContentView = contentView else { return }
 
         let contentSize = currentContentView.intrinsicContentSize
-        let contentX = Int(bounds.size.width / 2.0 - contentSize.width / 2.0
-            + (contentInsets.left - contentInsets.right) / 2.0)
-        let contentY = Int(bounds.size.height / 2.0 - contentSize.height / 2.0
-            + (contentInsets.top - contentInsets.bottom) / 2.0)
+        let contentX = bounds.size.width / 2.0 - contentSize.width / 2.0
+            + (contentInsets.left - contentInsets.right) / 2.0
+        let contentY = bounds.size.height / 2.0 - contentSize.height / 2.0
+            + (contentInsets.top - contentInsets.bottom) / 2.0
 
         currentContentView.frame = CGRect(origin: CGPoint(x: contentX, y: contentY), size: contentSize)
     }
