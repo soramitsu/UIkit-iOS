@@ -11,7 +11,7 @@ public struct ModalInputPresentationConfiguration {
     public var shadowOpacity: CGFloat
 
     public init(contentAppearanceAnimator: BlockViewAnimatorProtocol = BlockViewAnimator(duration: 0.35, delay: 0.0, options: [.curveEaseOut]),
-                contentDissmisalAnimator: BlockViewAnimatorProtocol = BlockViewAnimator(duration: 0.35, delay: 0.0, options: [.curveEaseIn]),
+                contentDissmisalAnimator: BlockViewAnimatorProtocol = BlockViewAnimator(duration: 0.35, delay: 0.0, options: [.curveLinear]),
                 shadowOpacity: CGFloat = 0.5) {
         self.contentAppearanceAnimator = contentAppearanceAnimator
         self.contentDissmisalAnimator = contentDissmisalAnimator
@@ -21,6 +21,8 @@ public struct ModalInputPresentationConfiguration {
 
 public class ModalInputPresentationFactory: NSObject {
     let configuration: ModalInputPresentationConfiguration
+
+    var presentation: ModalInputPresentationController?
 
     public init(configuration: ModalInputPresentationConfiguration) {
         self.configuration = configuration
@@ -43,10 +45,14 @@ extension ModalInputPresentationFactory: UIViewControllerTransitioningDelegate {
 
     public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?,
                                        source: UIViewController) -> UIPresentationController? {
-        let inputPresentationController = ModalInputPresentationController(presentedViewController: presented,
-                                                                           presenting: presenting,
-                                                                           shadowOpacity: configuration.shadowOpacity)
-        return inputPresentationController
+        presentation = ModalInputPresentationController(presentedViewController: presented,
+                                                        presenting: presenting,
+                                                        shadowOpacity: configuration.shadowOpacity)
+        return presentation
+    }
+
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return presentation?.interactiveDismissal
     }
 }
 
@@ -118,8 +124,11 @@ extension ModalInputPresentationDismissAnimator: UIViewControllerAnimatedTransit
         }
 
         let completionBlock: (Bool) -> Void = { finished in
-            presentedController.view.removeFromSuperview()
-            transitionContext.completeTransition(finished)
+            if !transitionContext.transitionWasCancelled {
+                presentedController.view.removeFromSuperview()
+            }
+
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
 
         animator.animate(block: animationBlock, completionBlock: completionBlock)

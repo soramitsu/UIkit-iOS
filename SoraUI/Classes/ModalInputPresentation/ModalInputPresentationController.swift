@@ -10,6 +10,9 @@ class ModalInputPresentationController: UIPresentationController {
 
     private var backgroundView: UIView?
 
+    var interactiveDismissal: UIPercentDrivenInteractiveTransition?
+    var initialTranslation: CGPoint = .zero
+
     init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, shadowOpacity: CGFloat) {
 
         self.shadowOpacity = shadowOpacity
@@ -40,6 +43,12 @@ class ModalInputPresentationController: UIPresentationController {
         backgroundView?.addGestureRecognizer(cancellationGesture)
     }
 
+    private func attachPanGesture() {
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(sender:)))
+        containerView?.addGestureRecognizer(panGestureRecognizer)
+        panGestureRecognizer.delegate = self
+    }
+
     // MARK: Presentation overridings
 
     override func presentationTransitionWillBegin() {
@@ -49,6 +58,7 @@ class ModalInputPresentationController: UIPresentationController {
 
         configureBackgroundView(on: containerView)
         attachCancellationGesture()
+        attachPanGesture()
 
         animateBackgroundAlpha(fromValue: 0.0, toValue: 1.0)
     }
@@ -107,10 +117,77 @@ class ModalInputPresentationController: UIPresentationController {
             dismiss(animated: true)
         }
     }
+
+    // MARK: Interactive dismissal
+
+    @objc func didPan(sender: Any?) {
+        guard let panGestureRecognizer = sender as? UIPanGestureRecognizer else { return }
+        guard let view = panGestureRecognizer.view else { return }
+
+        handlePan(from: panGestureRecognizer, on: view)
+    }
+
+    private func handlePan(from panGestureRecognizer: UIPanGestureRecognizer, on view: UIView) {
+        let translation = panGestureRecognizer.translation(in: view)
+        let velocity = panGestureRecognizer.velocity(in: view)
+
+        switch panGestureRecognizer.state {
+        case .began, .changed:
+
+            if let interactiveDismissal = interactiveDismissal {
+                let progress = min(1.0, max(0.0, (translation.y - initialTranslation.y) / max(1.0, view.bounds.size.height)))
+
+                interactiveDismissal.update(progress)
+            } else {
+                interactiveDismissal = UIPercentDrivenInteractiveTransition()
+                initialTranslation = translation
+                presentedViewController.dismiss(animated: true)
+            }
+        case .cancelled, .ended:
+            if let interactiveDismissal = interactiveDismissal {
+                stopPullToDismiss(finished: panGestureRecognizer.state != .cancelled && (
+                    (interactiveDismissal.percentComplete >= 0.35 && velocity.y >= 0) ||
+                        (
+                            velocity.y >= 1280.0 &&
+                                translation.y >= 87.0
+                        )
+                ))
+            }
+        default:
+            break
+        }
+    }
+
+    private func stopPullToDismiss(finished: Bool) {
+        guard let interactiveDismissal = interactiveDismissal else {
+            return
+        }
+
+        if finished {
+            interactiveDismissal.completionSpeed = 0.45
+            interactiveDismissal.finish()
+        } else {
+            interactiveDismissal.completionSpeed = 0.45
+            interactiveDismissal.cancel()
+        }
+
+        self.interactiveDismissal = nil
+    }
 }
 
 extension ModalInputPresentationController: ModalInputViewPresenterProtocol {
     func hide(view: ModalInputViewProtocol, animated: Bool) {
+        guard interactiveDismissal == nil else {
+            return
+        }
+
         dismiss(animated: animated)
+    }
+}
+
+extension ModalInputPresentationController: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                                  shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SoraUI'
-  s.version          = '1.9.0'
+  s.version          = '1.8.10'
   s.summary          = 'UI Library for design and layout process simplification.'
 
   s.description      = 'Library contains views and controls that simplifies design and layout implementation manually in code or utilizing interface build.'
@@ -73,10 +73,6 @@ Pod::Spec.new do |s|
 
   s.test_spec do |ts|
       ts.source_files = 'Tests/**/*.swift'
-  end
-
-  s.subspec 'ModalDraggable' do |modaldraggable|
-    modaldraggable.source_files = 'SoraUI/Classes/ModalDraggable/**/*'
   end
 
 end
