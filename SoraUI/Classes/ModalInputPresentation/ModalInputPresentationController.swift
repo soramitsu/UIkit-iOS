@@ -6,16 +6,19 @@
 import UIKit
 
 class ModalInputPresentationController: UIPresentationController {
-    let shadowOpacity: CGFloat
+    let configuration: ModalInputPresentationConfiguration
 
     private var backgroundView: UIView?
+    private var headerView: RoundedView?
 
     var interactiveDismissal: UIPercentDrivenInteractiveTransition?
     var initialTranslation: CGPoint = .zero
 
-    init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, shadowOpacity: CGFloat) {
+    init(presentedViewController: UIViewController,
+         presenting presentingViewController: UIViewController?,
+         configuration: ModalInputPresentationConfiguration) {
 
-        self.shadowOpacity = shadowOpacity
+        self.configuration = configuration
 
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
 
@@ -29,12 +32,51 @@ class ModalInputPresentationController: UIPresentationController {
             view.insertSubview(currentBackgroundView, at: 0)
         } else {
             let newBackgroundView = UIView(frame: view.bounds)
-            newBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(shadowOpacity)
+
+            newBackgroundView.backgroundColor = UIColor.black
+                .withAlphaComponent(configuration.style.shadowOpacity)
+
             view.insertSubview(newBackgroundView, at: 0)
             backgroundView = newBackgroundView
         }
 
         backgroundView?.frame = view.bounds
+    }
+
+    private func configureHeaderView(on view: UIView, style: ModalInputPresentationHeaderStyle) {
+        let width = containerView?.bounds.width ?? view.bounds.width
+
+        if let headerView = headerView {
+            view.insertSubview(headerView, at: 0)
+        } else {
+            let baseView = RoundedView()
+            baseView.cornerRadius = style.cornerRadius
+            baseView.roundingCorners = [.topLeft, .topRight]
+            baseView.fillColor = style.backgroundColor
+            baseView.highlightedFillColor = style.backgroundColor
+            baseView.shadowOpacity = 0.0
+
+            let indicator = RoundedView()
+            indicator.roundingCorners = .allCorners
+            indicator.cornerRadius = style.indicatorSize.height / 2.0
+            indicator.fillColor = style.indicatorColor
+            indicator.highlightedFillColor = style.indicatorColor
+            indicator.shadowOpacity = 0.0
+
+            baseView.addSubview(indicator)
+
+            let indicatorX = width / 2.0 - style.indicatorSize.width / 2.0
+            indicator.frame = CGRect(origin: CGPoint(x: indicatorX, y: style.indicatorVerticalOffset), size: style.indicatorSize)
+
+            view.insertSubview(baseView, at: 0)
+
+            headerView = baseView
+        }
+
+        headerView?.frame = CGRect(x: 0.0,
+                                   y: -style.preferredHeight + 0.5,
+                                   width: width,
+                                   height: style.preferredHeight)
     }
 
     private func attachCancellationGesture() {
@@ -57,6 +99,11 @@ class ModalInputPresentationController: UIPresentationController {
         }
 
         configureBackgroundView(on: containerView)
+
+        if let headerStyle = configuration.style.headerStyle {
+            configureHeaderView(on: presentedViewController.view, style: headerStyle)
+        }
+
         attachCancellationGesture()
         attachPanGesture()
 
@@ -68,10 +115,6 @@ class ModalInputPresentationController: UIPresentationController {
     }
 
     override var frameOfPresentedViewInContainerView: CGRect {
-        guard let presentedView = presentedView else {
-            return .zero
-        }
-
         guard let containerView = containerView else {
             return .zero
         }
@@ -82,10 +125,14 @@ class ModalInputPresentationController: UIPresentationController {
             layoutFrame = containerView.safeAreaLayoutGuide.layoutFrame
         }
 
+        let preferredSize = presentedViewController.preferredContentSize
+        let layoutWidth = preferredSize.width > 0.0 ? preferredSize.width : layoutFrame.width
+        let layoutHeight = preferredSize.height > 0.0 ? preferredSize.height : layoutFrame.height
+
         return CGRect(x: layoutFrame.minX,
-                      y: layoutFrame.maxY - presentedView.frame.size.height,
-                      width: presentedView.frame.size.width,
-                      height: presentedView.frame.size.height)
+                      y: layoutFrame.maxY - layoutHeight,
+                      width: layoutWidth,
+                      height: layoutHeight)
     }
 
     // MARK: Animation
@@ -145,13 +192,10 @@ class ModalInputPresentationController: UIPresentationController {
             }
         case .cancelled, .ended:
             if let interactiveDismissal = interactiveDismissal {
-                stopPullToDismiss(finished: panGestureRecognizer.state != .cancelled && (
-                    (interactiveDismissal.percentComplete >= 0.35 && velocity.y >= 0) ||
-                        (
-                            velocity.y >= 1280.0 &&
-                                translation.y >= 87.0
-                        )
-                ))
+                let thresholdReached = interactiveDismissal.percentComplete >= configuration.dismissPercentThreshold
+                let shouldDismiss = (thresholdReached && velocity.y >= 0) ||
+                    (velocity.y >= configuration.dismissVelocityThreshold && translation.y >= configuration.dismissMinimumOffset)
+                stopPullToDismiss(finished: panGestureRecognizer.state != .cancelled && shouldDismiss)
             }
         default:
             break
@@ -164,10 +208,10 @@ class ModalInputPresentationController: UIPresentationController {
         }
 
         if finished {
-            interactiveDismissal.completionSpeed = 0.45
+            interactiveDismissal.completionSpeed = configuration.dismissFinishSpeedFactor
             interactiveDismissal.finish()
         } else {
-            interactiveDismissal.completionSpeed = 0.45
+            interactiveDismissal.completionSpeed = configuration.dismissCancelSpeedFactor
             interactiveDismissal.cancel()
         }
 
