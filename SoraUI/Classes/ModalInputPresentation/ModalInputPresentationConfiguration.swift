@@ -33,4 +33,10 @@ public struct ModalInputPresentationConfiguration {
         self.dismissFinishSpeedFactor = dismissFinishSpeedFactor
         self.dismissCancelSpeedFactor = dismissCancelSpeedFactor
     }
+
+    public init(shadowOpacity: CGFloat) {
+        let style = ModalInputPresentationStyle(shadowOpacity: shadowOpacity)
+
+        self.init(style: style)
+    }
 }

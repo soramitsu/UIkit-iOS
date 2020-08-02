@@ -10,7 +10,7 @@ private struct Constants {
 }
 
 public extension UIViewController {
-    var modalPresentationFactory: UIViewControllerTransitioningDelegate? {
+    var modalTransitioningFactory: UIViewControllerTransitioningDelegate? {
         get {
             transitioningDelegate
         }

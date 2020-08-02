@@ -40,7 +40,7 @@ final class ModalPresentationViewController: UIViewController {
         let viewController = UIViewController()
         viewController.preferredContentSize = CGSize(width: 0.0, height: 395.0)
         viewController.view = view
-        viewController.modalPresentationFactory = ModalInputPresentationFactory(configuration: configuration)
+        viewController.modalTransitioningFactory = ModalInputPresentationFactory(configuration: configuration)
         viewController.modalPresentationStyle = .custom
 
         present(viewController, animated: true, completion: nil)
