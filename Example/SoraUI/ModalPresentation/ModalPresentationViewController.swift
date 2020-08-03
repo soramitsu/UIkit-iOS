@@ -34,7 +34,8 @@ final class ModalPresentationViewController: UIViewController {
                                                             indicatorVerticalOffset: 2.0,
                                                             indicatorSize: CGSize(width: 25, height: 2.0),
                                                             indicatorColor: .lightGray)
-        let style = ModalInputPresentationStyle(shadowOpacity: 0.19, headerStyle: headerStyle)
+        let style = ModalInputPresentationStyle(backdropColor: UIColor.black.withAlphaComponent(0.19),
+                                                    headerStyle: headerStyle)
         let configuration = ModalInputPresentationConfiguration(style: style)
 
         let viewController = UIViewController()

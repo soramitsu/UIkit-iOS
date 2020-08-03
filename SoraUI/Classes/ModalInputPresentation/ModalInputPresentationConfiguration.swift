@@ -35,7 +35,7 @@ public struct ModalInputPresentationConfiguration {
     }
 
     public init(shadowOpacity: CGFloat) {
-        let style = ModalInputPresentationStyle(shadowOpacity: shadowOpacity)
+        let style = ModalInputPresentationStyle(backdropColor: UIColor.black.withAlphaComponent(shadowOpacity))
 
         self.init(style: style)
     }
