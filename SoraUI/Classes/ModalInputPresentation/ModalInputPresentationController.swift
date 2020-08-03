@@ -130,15 +130,25 @@ class ModalInputPresentationController: UIPresentationController {
             return .zero
         }
 
-        var layoutFrame = containerView.bounds
+        let layoutFrame: CGRect
+        let bottomOffset: CGFloat
 
         if #available(iOS 11.0, *) {
-            layoutFrame = containerView.safeAreaLayoutGuide.layoutFrame
+            if configuration.extendUnderSafeArea {
+                layoutFrame = containerView.bounds
+                bottomOffset = containerView.safeAreaInsets.bottom
+            } else {
+                layoutFrame = containerView.safeAreaLayoutGuide.layoutFrame
+                bottomOffset = 0.0
+            }
+        } else {
+            layoutFrame = containerView.bounds
+            bottomOffset = 0.0
         }
 
         let preferredSize = presentedViewController.preferredContentSize
         let layoutWidth = preferredSize.width > 0.0 ? preferredSize.width : layoutFrame.width
-        let layoutHeight = preferredSize.height > 0.0 ? preferredSize.height : layoutFrame.height
+        let layoutHeight = preferredSize.height > 0.0 ? preferredSize.height + bottomOffset : layoutFrame.height
 
         return CGRect(x: layoutFrame.minX,
                       y: layoutFrame.maxY - layoutHeight,

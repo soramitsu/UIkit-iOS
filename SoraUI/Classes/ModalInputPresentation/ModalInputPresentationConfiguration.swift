@@ -10,6 +10,7 @@ public struct ModalInputPresentationConfiguration {
     public let contentDissmisalAnimator: BlockViewAnimatorProtocol
     public let style: ModalInputPresentationStyle
 
+    public let extendUnderSafeArea: Bool
     public let dismissPercentThreshold: CGFloat
     public let dismissVelocityThreshold: CGFloat
     public let dismissMinimumOffset: CGFloat
@@ -19,6 +20,7 @@ public struct ModalInputPresentationConfiguration {
     public init(contentAppearanceAnimator: BlockViewAnimatorProtocol = BlockViewAnimator(duration: 0.35, delay: 0.0, options: [.curveLinear]),
                 contentDissmisalAnimator: BlockViewAnimatorProtocol = BlockViewAnimator(duration: 0.35, delay: 0.0, options: [.curveLinear]),
                 style: ModalInputPresentationStyle = .defaultStyle,
+                extendUnderSafeArea: Bool = false,
                 dismissPercentThreshold: CGFloat = 0.35,
                 dismissVelocityThreshold: CGFloat = 1280,
                 dismissMinimumOffset: CGFloat = 87,
@@ -27,6 +29,7 @@ public struct ModalInputPresentationConfiguration {
         self.contentAppearanceAnimator = contentAppearanceAnimator
         self.contentDissmisalAnimator = contentDissmisalAnimator
         self.style = style
+        self.extendUnderSafeArea = extendUnderSafeArea
         self.dismissPercentThreshold = dismissPercentThreshold
         self.dismissVelocityThreshold = dismissVelocityThreshold
         self.dismissMinimumOffset = dismissMinimumOffset
