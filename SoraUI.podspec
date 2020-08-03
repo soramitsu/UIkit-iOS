@@ -64,6 +64,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'ModalInputPresentation' do |mp|
     mp.dependency 'SoraUI/Animator'
+    mp.dependency 'SoraUI/Controls'
     mp.source_files = 'SoraUI/Classes/ModalInputPresentation/**/*'
   end
 

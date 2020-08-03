@@ -7,6 +7,7 @@ import UIKit
 import SoraUI
 
 final class ModalPresentationViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,14 +25,22 @@ final class ModalPresentationViewController: UIViewController {
     // MARK
 
     @objc func actionSelect() {
-        let toolbar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 44.0))
+        let view = UIView()
+        view.backgroundColor = .darkText
 
-        let configuration = ModalInputPresentationConfiguration(shadowOpacity: 0.19)
-        let transitioningDelegate = ModalInputPresentationFactory(configuration: configuration)
+        let headerStyle = ModalInputPresentationHeaderStyle(preferredHeight: 20.0,
+                                                            backgroundColor: .darkText,
+                                                            cornerRadius: 20.0,
+                                                            indicatorVerticalOffset: 2.0,
+                                                            indicatorSize: CGSize(width: 25, height: 2.0),
+                                                            indicatorColor: .lightGray)
+        let style = ModalInputPresentationStyle(shadowOpacity: 0.19, headerStyle: headerStyle)
+        let configuration = ModalInputPresentationConfiguration(style: style)
 
         let viewController = UIViewController()
-        viewController.view = toolbar
-        viewController.transitioningDelegate = transitioningDelegate
+        viewController.preferredContentSize = CGSize(width: 0.0, height: 395.0)
+        viewController.view = view
+        viewController.modalTransitioningFactory = ModalInputPresentationFactory(configuration: configuration)
         viewController.modalPresentationStyle = .custom
 
         present(viewController, animated: true, completion: nil)

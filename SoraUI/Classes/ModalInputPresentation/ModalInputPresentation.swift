@@ -5,22 +5,10 @@
 
 import UIKit
 
-public struct ModalInputPresentationConfiguration {
-    public var contentAppearanceAnimator: BlockViewAnimatorProtocol
-    public var contentDissmisalAnimator: BlockViewAnimatorProtocol
-    public var shadowOpacity: CGFloat
-
-    public init(contentAppearanceAnimator: BlockViewAnimatorProtocol = BlockViewAnimator(duration: 0.35, delay: 0.0, options: [.curveEaseOut]),
-                contentDissmisalAnimator: BlockViewAnimatorProtocol = BlockViewAnimator(duration: 0.35, delay: 0.0, options: [.curveEaseIn]),
-                shadowOpacity: CGFloat = 0.5) {
-        self.contentAppearanceAnimator = contentAppearanceAnimator
-        self.contentDissmisalAnimator = contentDissmisalAnimator
-        self.shadowOpacity = shadowOpacity
-    }
-}
-
 public class ModalInputPresentationFactory: NSObject {
     let configuration: ModalInputPresentationConfiguration
+
+    var presentation: ModalInputPresentationController?
 
     public init(configuration: ModalInputPresentationConfiguration) {
         self.configuration = configuration
@@ -38,15 +26,20 @@ extension ModalInputPresentationFactory: UIViewControllerTransitioningDelegate {
 
     public func animationController(forDismissed dismissed: UIViewController)
         -> UIViewControllerAnimatedTransitioning? {
-        return ModalInputPresentationDismissAnimator(animator: configuration.contentDissmisalAnimator)
+        return ModalInputPresentationDismissAnimator(animator: configuration.contentDissmisalAnimator,
+                                                     finalPositionOffset: configuration.style.headerStyle?.preferredHeight ?? 0.0)
     }
 
     public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?,
                                        source: UIViewController) -> UIPresentationController? {
-        let inputPresentationController = ModalInputPresentationController(presentedViewController: presented,
-                                                                           presenting: presenting,
-                                                                           shadowOpacity: configuration.shadowOpacity)
-        return inputPresentationController
+        presentation = ModalInputPresentationController(presentedViewController: presented,
+                                                        presenting: presenting,
+                                                        configuration: configuration)
+        return presentation
+    }
+
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return presentation?.interactiveDismissal
     }
 }
 
@@ -91,9 +84,11 @@ extension ModalInputPresentationAppearanceAnimator: UIViewControllerAnimatedTran
 
 public final class ModalInputPresentationDismissAnimator: NSObject {
     let animator: BlockViewAnimatorProtocol
+    let finalPositionOffset: CGFloat
 
-    public init(animator: BlockViewAnimatorProtocol) {
+    public init(animator: BlockViewAnimatorProtocol, finalPositionOffset: CGFloat) {
         self.animator = animator
+        self.finalPositionOffset = finalPositionOffset
 
         super.init()
     }
@@ -111,15 +106,18 @@ extension ModalInputPresentationDismissAnimator: UIViewControllerAnimatedTransit
 
         let initialFrame = presentedController.view.frame
         var finalFrame = initialFrame
-        finalFrame.origin.y = transitionContext.containerView.frame.maxY
+        finalFrame.origin.y = transitionContext.containerView.frame.maxY + finalPositionOffset
 
         let animationBlock: () -> Void = {
             presentedController.view.frame = finalFrame
         }
 
         let completionBlock: (Bool) -> Void = { finished in
-            presentedController.view.removeFromSuperview()
-            transitionContext.completeTransition(finished)
+            if !transitionContext.transitionWasCancelled {
+                presentedController.view.removeFromSuperview()
+            }
+
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
 
         animator.animate(block: animationBlock, completionBlock: completionBlock)
