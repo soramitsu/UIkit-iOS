@@ -18,3 +18,11 @@ public protocol ModalInputViewPresenterDelegate: class {
     func presenterShouldHide(_ presenter: ModalInputViewPresenterProtocol) -> Bool
     func presenterDidHide(_ presenter: ModalInputViewPresenterProtocol)
 }
+
+public extension ModalInputViewPresenterDelegate {
+    func presenterShouldHide(_ presenter: ModalInputViewPresenterProtocol) -> Bool {
+        return true
+    }
+
+    func presenterDidHide(_ presenter: ModalInputViewPresenterProtocol) {}
+}
