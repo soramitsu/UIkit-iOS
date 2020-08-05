@@ -29,17 +29,17 @@ public struct ModalInputPresentationHeaderStyle {
 }
 
 public struct ModalInputPresentationStyle {
-    public let shadowOpacity: CGFloat
+    public let backdropColor: UIColor
     public let headerStyle: ModalInputPresentationHeaderStyle?
 
-    public init(shadowOpacity: CGFloat, headerStyle: ModalInputPresentationHeaderStyle? = nil) {
-        self.shadowOpacity = shadowOpacity
+    public init(backdropColor: UIColor, headerStyle: ModalInputPresentationHeaderStyle? = nil) {
+        self.backdropColor = backdropColor
         self.headerStyle = headerStyle
     }
 }
 
 public extension ModalInputPresentationStyle {
     static var defaultStyle: ModalInputPresentationStyle {
-        ModalInputPresentationStyle(shadowOpacity: 0.5, headerStyle: nil)
+        ModalInputPresentationStyle(backdropColor: UIColor.black.withAlphaComponent(0.5), headerStyle: nil)
     }
 }

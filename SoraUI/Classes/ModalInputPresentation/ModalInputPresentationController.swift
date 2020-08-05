@@ -14,6 +14,18 @@ class ModalInputPresentationController: UIPresentationController {
     var interactiveDismissal: UIPercentDrivenInteractiveTransition?
     var initialTranslation: CGPoint = .zero
 
+    var presenterDelegate: ModalInputViewPresenterDelegate? {
+        (presentedViewController as? ModalInputViewPresenterDelegate) ??
+        (presentedView as? ModalInputViewPresenterDelegate) ??
+        (presentedViewController.view as? ModalInputViewPresenterDelegate)
+    }
+
+    var inputView: ModalInputViewProtocol? {
+        (presentedViewController as? ModalInputViewProtocol) ??
+        (presentedView as? ModalInputViewProtocol) ??
+        (presentedViewController.view as? ModalInputViewProtocol)
+    }
+
     init(presentedViewController: UIViewController,
          presenting presentingViewController: UIViewController?,
          configuration: ModalInputPresentationConfiguration) {
@@ -22,7 +34,7 @@ class ModalInputPresentationController: UIPresentationController {
 
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
 
-        if let modalInputView = presentedViewController.view as? ModalInputViewProtocol {
+        if let modalInputView = inputView {
             modalInputView.presenter = self
         }
     }
@@ -33,8 +45,7 @@ class ModalInputPresentationController: UIPresentationController {
         } else {
             let newBackgroundView = UIView(frame: view.bounds)
 
-            newBackgroundView.backgroundColor = UIColor.black
-                .withAlphaComponent(configuration.style.shadowOpacity)
+            newBackgroundView.backgroundColor = configuration.style.backdropColor
 
             view.insertSubview(newBackgroundView, at: 0)
             backgroundView = newBackgroundView
@@ -119,15 +130,25 @@ class ModalInputPresentationController: UIPresentationController {
             return .zero
         }
 
-        var layoutFrame = containerView.bounds
+        let layoutFrame: CGRect
+        let bottomOffset: CGFloat
 
         if #available(iOS 11.0, *) {
-            layoutFrame = containerView.safeAreaLayoutGuide.layoutFrame
+            if configuration.extendUnderSafeArea {
+                layoutFrame = containerView.bounds
+                bottomOffset = containerView.safeAreaInsets.bottom
+            } else {
+                layoutFrame = containerView.safeAreaLayoutGuide.layoutFrame
+                bottomOffset = 0.0
+            }
+        } else {
+            layoutFrame = containerView.bounds
+            bottomOffset = 0.0
         }
 
         let preferredSize = presentedViewController.preferredContentSize
         let layoutWidth = preferredSize.width > 0.0 ? preferredSize.width : layoutFrame.width
-        let layoutHeight = preferredSize.height > 0.0 ? preferredSize.height : layoutFrame.height
+        let layoutHeight = preferredSize.height > 0.0 ? preferredSize.height + bottomOffset : layoutFrame.height
 
         return CGRect(x: layoutFrame.minX,
                       y: layoutFrame.maxY - layoutHeight,
@@ -155,14 +176,16 @@ class ModalInputPresentationController: UIPresentationController {
     // MARK: Action
 
     @objc func actionDidCancel(gesture: UITapGestureRecognizer) {
-        guard let modalInputView = presentedView as? ModalInputViewPresenterDelegate else {
+        guard let presenterDelegate = presenterDelegate else {
             dismiss(animated: true)
             return
         }
 
-        if modalInputView.presenterShouldHide(self) {
+        if presenterDelegate.presenterShouldHide(self) {
             dismiss(animated: true)
         }
+
+        presenterDelegate.presenterDidHide(self)
     }
 
     // MARK: Interactive dismissal
@@ -186,6 +209,10 @@ class ModalInputPresentationController: UIPresentationController {
 
                 interactiveDismissal.update(progress)
             } else {
+                if let presenterDelegate = presenterDelegate, !presenterDelegate.presenterShouldHide(self) {
+                    break
+                }
+
                 interactiveDismissal = UIPercentDrivenInteractiveTransition()
                 initialTranslation = translation
                 presentedViewController.dismiss(animated: true)
@@ -207,15 +234,17 @@ class ModalInputPresentationController: UIPresentationController {
             return
         }
 
+        self.interactiveDismissal = nil
+
         if finished {
             interactiveDismissal.completionSpeed = configuration.dismissFinishSpeedFactor
             interactiveDismissal.finish()
+
+            presenterDelegate?.presenterDidHide(self)
         } else {
             interactiveDismissal.completionSpeed = configuration.dismissCancelSpeedFactor
             interactiveDismissal.cancel()
         }
-
-        self.interactiveDismissal = nil
     }
 }
 
