@@ -5,8 +5,8 @@
 
 import UIKit
 
-class ModalInputPresentationController: UIPresentationController {
-    let configuration: ModalInputPresentationConfiguration
+class ModalSheetPresentationController: UIPresentationController {
+    let configuration: ModalSheetPresentationConfiguration
 
     private var backgroundView: UIView?
     private var headerView: RoundedView?
@@ -14,21 +14,21 @@ class ModalInputPresentationController: UIPresentationController {
     var interactiveDismissal: UIPercentDrivenInteractiveTransition?
     var initialTranslation: CGPoint = .zero
 
-    var presenterDelegate: ModalInputViewPresenterDelegate? {
-        (presentedViewController as? ModalInputViewPresenterDelegate) ??
-        (presentedView as? ModalInputViewPresenterDelegate) ??
-        (presentedViewController.view as? ModalInputViewPresenterDelegate)
+    var presenterDelegate: ModalPresenterDelegate? {
+        (presentedViewController as? ModalPresenterDelegate) ??
+        (presentedView as? ModalPresenterDelegate) ??
+        (presentedViewController.view as? ModalPresenterDelegate)
     }
 
-    var inputView: ModalInputViewProtocol? {
-        (presentedViewController as? ModalInputViewProtocol) ??
-        (presentedView as? ModalInputViewProtocol) ??
-        (presentedViewController.view as? ModalInputViewProtocol)
+    var inputView: ModalViewProtocol? {
+        (presentedViewController as? ModalViewProtocol) ??
+        (presentedView as? ModalViewProtocol) ??
+        (presentedViewController.view as? ModalViewProtocol)
     }
 
     init(presentedViewController: UIViewController,
          presenting presentingViewController: UIViewController?,
-         configuration: ModalInputPresentationConfiguration) {
+         configuration: ModalSheetPresentationConfiguration) {
 
         self.configuration = configuration
 
@@ -54,7 +54,7 @@ class ModalInputPresentationController: UIPresentationController {
         backgroundView?.frame = view.bounds
     }
 
-    private func configureHeaderView(on view: UIView, style: ModalInputPresentationHeaderStyle) {
+    private func configureHeaderView(on view: UIView, style: ModalSheetPresentationHeaderStyle) {
         let width = containerView?.bounds.width ?? view.bounds.width
 
         if let headerView = headerView {
@@ -248,8 +248,8 @@ class ModalInputPresentationController: UIPresentationController {
     }
 }
 
-extension ModalInputPresentationController: ModalInputViewPresenterProtocol {
-    func hide(view: ModalInputViewProtocol, animated: Bool) {
+extension ModalSheetPresentationController: ModalPresenterProtocol {
+    func hide(view: ModalViewProtocol, animated: Bool) {
         guard interactiveDismissal == nil else {
             return
         }
@@ -258,7 +258,7 @@ extension ModalInputPresentationController: ModalInputViewPresenterProtocol {
     }
 }
 
-extension ModalInputPresentationController: UIGestureRecognizerDelegate {
+extension ModalSheetPresentationController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                                   shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true

@@ -5,34 +5,34 @@
 
 import UIKit
 
-public class ModalInputPresentationFactory: NSObject {
-    let configuration: ModalInputPresentationConfiguration
+public class ModalSheetPresentationFactory: NSObject {
+    let configuration: ModalSheetPresentationConfiguration
 
-    var presentation: ModalInputPresentationController?
+    var presentation: ModalSheetPresentationController?
 
-    public init(configuration: ModalInputPresentationConfiguration) {
+    public init(configuration: ModalSheetPresentationConfiguration) {
         self.configuration = configuration
 
         super.init()
     }
 }
 
-extension ModalInputPresentationFactory: UIViewControllerTransitioningDelegate {
+extension ModalSheetPresentationFactory: UIViewControllerTransitioningDelegate {
 
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController,
                                     source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ModalInputPresentationAppearanceAnimator(animator: configuration.contentAppearanceAnimator)
+        return ModalSheetPresentationAppearanceAnimator(animator: configuration.contentAppearanceAnimator)
     }
 
     public func animationController(forDismissed dismissed: UIViewController)
         -> UIViewControllerAnimatedTransitioning? {
-        return ModalInputPresentationDismissAnimator(animator: configuration.contentDissmisalAnimator,
+        return ModalSheetPresentationDismissAnimator(animator: configuration.contentDissmisalAnimator,
                                                      finalPositionOffset: configuration.style.headerStyle?.preferredHeight ?? 0.0)
     }
 
     public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?,
                                        source: UIViewController) -> UIPresentationController? {
-        presentation = ModalInputPresentationController(presentedViewController: presented,
+        presentation = ModalSheetPresentationController(presentedViewController: presented,
                                                         presenting: presenting,
                                                         configuration: configuration)
         return presentation
@@ -43,7 +43,7 @@ extension ModalInputPresentationFactory: UIViewControllerTransitioningDelegate {
     }
 }
 
-public final class ModalInputPresentationAppearanceAnimator: NSObject {
+public final class ModalSheetPresentationAppearanceAnimator: NSObject {
     let animator: BlockViewAnimatorProtocol
 
     public init(animator: BlockViewAnimatorProtocol) {
@@ -53,7 +53,7 @@ public final class ModalInputPresentationAppearanceAnimator: NSObject {
     }
 }
 
-extension ModalInputPresentationAppearanceAnimator: UIViewControllerAnimatedTransitioning {
+extension ModalSheetPresentationAppearanceAnimator: UIViewControllerAnimatedTransitioning {
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return animator.duration
     }
@@ -82,7 +82,7 @@ extension ModalInputPresentationAppearanceAnimator: UIViewControllerAnimatedTran
     }
 }
 
-public final class ModalInputPresentationDismissAnimator: NSObject {
+public final class ModalSheetPresentationDismissAnimator: NSObject {
     let animator: BlockViewAnimatorProtocol
     let finalPositionOffset: CGFloat
 
@@ -94,7 +94,7 @@ public final class ModalInputPresentationDismissAnimator: NSObject {
     }
 }
 
-extension ModalInputPresentationDismissAnimator: UIViewControllerAnimatedTransitioning {
+extension ModalSheetPresentationDismissAnimator: UIViewControllerAnimatedTransitioning {
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return animator.duration
     }

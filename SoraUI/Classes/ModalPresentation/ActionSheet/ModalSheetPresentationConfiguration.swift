@@ -5,10 +5,10 @@
 
 import Foundation
 
-public struct ModalInputPresentationConfiguration {
+public struct ModalSheetPresentationConfiguration {
     public let contentAppearanceAnimator: BlockViewAnimatorProtocol
     public let contentDissmisalAnimator: BlockViewAnimatorProtocol
-    public let style: ModalInputPresentationStyle
+    public let style: ModalSheetPresentationStyle
 
     public let extendUnderSafeArea: Bool
     public let dismissPercentThreshold: CGFloat
@@ -19,7 +19,7 @@ public struct ModalInputPresentationConfiguration {
 
     public init(contentAppearanceAnimator: BlockViewAnimatorProtocol = BlockViewAnimator(duration: 0.35, delay: 0.0, options: [.curveLinear]),
                 contentDissmisalAnimator: BlockViewAnimatorProtocol = BlockViewAnimator(duration: 0.35, delay: 0.0, options: [.curveLinear]),
-                style: ModalInputPresentationStyle = .defaultStyle,
+                style: ModalSheetPresentationStyle = .defaultStyle,
                 extendUnderSafeArea: Bool = false,
                 dismissPercentThreshold: CGFloat = 0.35,
                 dismissVelocityThreshold: CGFloat = 1280,
@@ -38,7 +38,7 @@ public struct ModalInputPresentationConfiguration {
     }
 
     public init(shadowOpacity: CGFloat) {
-        let style = ModalInputPresentationStyle(backdropColor: UIColor.black.withAlphaComponent(shadowOpacity))
+        let style = ModalSheetPresentationStyle(backdropColor: UIColor.black.withAlphaComponent(shadowOpacity))
 
         self.init(style: style)
     }
