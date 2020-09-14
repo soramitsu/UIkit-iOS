@@ -6,7 +6,7 @@
 import UIKit
 import SoraUI
 
-final class ModalPresentationViewController: UIViewController {
+final class ModalSheetPresentationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

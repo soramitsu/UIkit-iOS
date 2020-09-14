@@ -33,10 +33,12 @@
 		843F0A8922BC0E36005B369F /* SkeletonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843F0A8822BC0E36005B369F /* SkeletonViewController.xib */; };
 		84530A32223A968F00AD7598 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84530A31223A968F00AD7598 /* DetailsViewController.swift */; };
 		84530A34223A975900AD7598 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84530A33223A975900AD7598 /* DetailsViewController.xib */; };
+		84754C80250FB24400854599 /* ModalAlertPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84754C7E250FB24400854599 /* ModalAlertPresentationViewController.swift */; };
+		84754C81250FB24400854599 /* ModalAlertPresentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84754C7F250FB24400854599 /* ModalAlertPresentationViewController.xib */; };
 		84FA008F22699DEF005DA950 /* EmptyStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA008E22699DEF005DA950 /* EmptyStateViewController.swift */; };
 		84FA009122699DFF005DA950 /* EmptyStateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA009022699DFF005DA950 /* EmptyStateViewController.xib */; };
-		84FA6E19228965FB003B9D40 /* ModalPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6E18228965FB003B9D40 /* ModalPresentationViewController.swift */; };
-		84FA6E1B22898714003B9D40 /* ModalPresentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA6E1A22898714003B9D40 /* ModalPresentationViewController.xib */; };
+		84FA6E19228965FB003B9D40 /* ModalSheetPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6E18228965FB003B9D40 /* ModalSheetPresentationViewController.swift */; };
+		84FA6E1B22898714003B9D40 /* ModalSheetPresentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA6E1A22898714003B9D40 /* ModalSheetPresentationViewController.xib */; };
 		F8F85F6D2497746B003FDC3F /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F85F6C2497746B003FDC3F /* ChildViewController.swift */; };
 		F9487713BAF471CD752C3343 /* Pods_SoraUI_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD9485C09127F44282000DF /* Pods_SoraUI_Example.framework */; };
 /* End PBXBuildFile section */
@@ -86,10 +88,12 @@
 		843F0A8822BC0E36005B369F /* SkeletonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonViewController.xib; sourceTree = "<group>"; };
 		84530A31223A968F00AD7598 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		84530A33223A975900AD7598 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		84754C7E250FB24400854599 /* ModalAlertPresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalAlertPresentationViewController.swift; sourceTree = "<group>"; };
+		84754C7F250FB24400854599 /* ModalAlertPresentationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalAlertPresentationViewController.xib; sourceTree = "<group>"; };
 		84FA008E22699DEF005DA950 /* EmptyStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateViewController.swift; sourceTree = "<group>"; };
 		84FA009022699DFF005DA950 /* EmptyStateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateViewController.xib; sourceTree = "<group>"; };
-		84FA6E18228965FB003B9D40 /* ModalPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationViewController.swift; sourceTree = "<group>"; };
-		84FA6E1A22898714003B9D40 /* ModalPresentationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalPresentationViewController.xib; sourceTree = "<group>"; };
+		84FA6E18228965FB003B9D40 /* ModalSheetPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSheetPresentationViewController.swift; sourceTree = "<group>"; };
+		84FA6E1A22898714003B9D40 /* ModalSheetPresentationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalSheetPresentationViewController.xib; sourceTree = "<group>"; };
 		8E3CF9E7A61DBF3EB142A06A /* Pods-SoraUI_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoraUI_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoraUI_Tests/Pods-SoraUI_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		98170E6FEAEEED23A46C185D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		BFD9485C09127F44282000DF /* Pods_SoraUI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoraUI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,9 +219,10 @@
 		607FACD21AFB9204008FA782 /* Example for SoraUI */ = {
 			isa = PBXGroup;
 			children = (
+				84754C79250FB1D600854599 /* ModalAlertPresentation */,
 				F8F85F6B24977456003FDC3F /* ChildViewColntroller */,
 				843F0A8522BC0DEF005B369F /* SkeletonView */,
-				84FA6E17228965D7003B9D40 /* ModalPresentation */,
+				84FA6E17228965D7003B9D40 /* ModalSheetPresentation */,
 				84FA008D22699DCF005DA950 /* EmptyStateViewController */,
 				84530A30223A967600AD7598 /* DetailsViewController */,
 				028547DF220886A400A40F41 /* SegmentedControl */,
@@ -301,6 +306,15 @@
 			path = DetailsViewController;
 			sourceTree = "<group>";
 		};
+		84754C79250FB1D600854599 /* ModalAlertPresentation */ = {
+			isa = PBXGroup;
+			children = (
+				84754C7E250FB24400854599 /* ModalAlertPresentationViewController.swift */,
+				84754C7F250FB24400854599 /* ModalAlertPresentationViewController.xib */,
+			);
+			path = ModalAlertPresentation;
+			sourceTree = "<group>";
+		};
 		84FA008D22699DCF005DA950 /* EmptyStateViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,13 +324,13 @@
 			path = EmptyStateViewController;
 			sourceTree = "<group>";
 		};
-		84FA6E17228965D7003B9D40 /* ModalPresentation */ = {
+		84FA6E17228965D7003B9D40 /* ModalSheetPresentation */ = {
 			isa = PBXGroup;
 			children = (
-				84FA6E18228965FB003B9D40 /* ModalPresentationViewController.swift */,
-				84FA6E1A22898714003B9D40 /* ModalPresentationViewController.xib */,
+				84FA6E18228965FB003B9D40 /* ModalSheetPresentationViewController.swift */,
+				84FA6E1A22898714003B9D40 /* ModalSheetPresentationViewController.xib */,
 			);
-			path = ModalPresentation;
+			path = ModalSheetPresentation;
 			sourceTree = "<group>";
 		};
 		CCAA257A6E6891F06F0C29AF /* Frameworks */ = {
@@ -391,7 +405,7 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = YLWWUD25VZ;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -430,13 +444,14 @@
 				028547E32208873100A40F41 /* SegmentedControlViewController.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				84FA6E1B22898714003B9D40 /* ModalPresentationViewController.xib in Resources */,
+				84FA6E1B22898714003B9D40 /* ModalSheetPresentationViewController.xib in Resources */,
 				027A3D9721C156E00020B66A /* TextCodeViewController.xib in Resources */,
 				84530A34223A975900AD7598 /* DetailsViewController.xib in Resources */,
 				027A3D9021C1509C0020B66A /* PincodeViewController.xib in Resources */,
 				027A3D8721C14A980020B66A /* GradientButtonsViewController.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				027A3D9A21C15A350020B66A /* LoadingViewController.xib in Resources */,
+				84754C81250FB24400854599 /* ModalAlertPresentationViewController.xib in Resources */,
 				027A3DB921C2505B0020B66A /* ActionTitleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,9 +538,10 @@
 				843F0A8722BC0E10005B369F /* SkeletonViewController.swift in Sources */,
 				027A3D9C21C15A440020B66A /* LoadingViewController.swift in Sources */,
 				027A3DB721C248880020B66A /* ActionTitleViewController.swift in Sources */,
+				84754C80250FB24400854599 /* ModalAlertPresentationViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ListViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				84FA6E19228965FB003B9D40 /* ModalPresentationViewController.swift in Sources */,
+				84FA6E19228965FB003B9D40 /* ModalSheetPresentationViewController.swift in Sources */,
 				027A3D8521C14A670020B66A /* GradientButtonsViewController.swift in Sources */,
 				F8F85F6D2497746B003FDC3F /* ChildViewController.swift in Sources */,
 				028547E1220886CD00A40F41 /* SegmentedControlViewController.swift in Sources */,
@@ -686,15 +702,16 @@
 			baseConfigurationReference = 12A2971F5E62F140FF401B1A /* Pods-SoraUI_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = YLWWUD25VZ;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SoraUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.jp.soramitsu.soraui-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ridev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;

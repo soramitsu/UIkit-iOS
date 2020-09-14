@@ -183,9 +183,8 @@ class ModalSheetPresentationController: UIPresentationController {
 
         if presenterDelegate.presenterShouldHide(self) {
             dismiss(animated: true)
+            presenterDelegate.presenterDidHide(self)
         }
-
-        presenterDelegate.presenterDidHide(self)
     }
 
     // MARK: Interactive dismissal

@@ -17,7 +17,8 @@ final class ListViewController: UITableViewController {
         case segmentedControl
         case details
         case emptyState
-        case modalPresentation
+        case modalAlert
+        case modalPose
         case skeleton
     }
 
@@ -56,8 +57,11 @@ final class ListViewController: UITableViewController {
         case .emptyState:
             let controller = EmptyStateViewController(nibName: "EmptyStateViewController", bundle: Bundle.main)
             navigationController?.pushViewController(controller, animated: true)
-        case .modalPresentation:
-            let controller = ModalPresentationViewController(nibName: "ModalPresentationViewController", bundle: Bundle.main)
+        case .modalAlert:
+            let controller = ModalSheetPresentationViewController(nibName: "ModalSheetPresentationViewController", bundle: Bundle.main)
+            navigationController?.pushViewController(controller, animated: true)
+        case .modalPose:
+            let controller = ModalAlertPresentationViewController(nibName: "ModalAlertPresentationViewController", bundle: Bundle.main)
             navigationController?.pushViewController(controller, animated: true)
         case .skeleton:
             let controller = SkeletonViewController(nibName: "SkeletonViewController",
