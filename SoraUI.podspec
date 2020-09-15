@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SoraUI'
-  s.version          = '1.8.11'
+  s.version          = '1.9.0'
   s.summary          = 'UI Library for design and layout process simplification.'
 
   s.description      = 'Library contains views and controls that simplifies design and layout implementation manually in code or utilizing interface build.'
@@ -62,10 +62,10 @@ Pod::Spec.new do |s|
     camera.source_files = 'SoraUI/Classes/Camera/**/*'
   end
 
-  s.subspec 'ModalInputPresentation' do |mp|
+  s.subspec 'ModalPresentation' do |mp|
     mp.dependency 'SoraUI/Animator'
     mp.dependency 'SoraUI/Controls'
-    mp.source_files = 'SoraUI/Classes/ModalInputPresentation/**/*'
+    mp.source_files = 'SoraUI/Classes/ModalPresentation/**/*'
   end
 
   s.subspec 'Skrull' do |skl|
