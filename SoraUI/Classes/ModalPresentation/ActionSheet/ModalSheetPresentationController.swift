@@ -19,6 +19,10 @@ class ModalSheetPresentationController: UIPresentationController {
         (presentedView as? ModalPresenterDelegate) ??
         (presentedViewController.view as? ModalPresenterDelegate)
     }
+    
+    var sheetPresenterDelegate: ModalSheetPresenterDelegate? {
+        return presenterDelegate as? ModalSheetPresenterDelegate
+    }
 
     var inputView: ModalViewProtocol? {
         (presentedViewController as? ModalViewProtocol) ??
@@ -132,11 +136,12 @@ class ModalSheetPresentationController: UIPresentationController {
 
         let layoutFrame: CGRect
         let bottomOffset: CGFloat
-
+        var maximumHeight = containerView.frame.size.height
         if #available(iOS 11.0, *) {
             if configuration.extendUnderSafeArea {
                 layoutFrame = containerView.bounds
                 bottomOffset = containerView.safeAreaInsets.bottom
+                maximumHeight -= containerView.safeAreaInsets.top
             } else {
                 layoutFrame = containerView.safeAreaLayoutGuide.layoutFrame
                 bottomOffset = 0.0
@@ -145,15 +150,17 @@ class ModalSheetPresentationController: UIPresentationController {
             layoutFrame = containerView.bounds
             bottomOffset = 0.0
         }
-
+        maximumHeight -= bottomOffset
+        
         let preferredSize = presentedViewController.preferredContentSize
         let layoutWidth = preferredSize.width > 0.0 ? preferredSize.width : layoutFrame.width
         let layoutHeight = preferredSize.height > 0.0 ? preferredSize.height + bottomOffset : layoutFrame.height
+        let height = min(layoutHeight, maximumHeight)
 
         return CGRect(x: layoutFrame.minX,
-                      y: layoutFrame.maxY - layoutHeight,
+                      y: layoutFrame.maxY - height,
                       width: layoutWidth,
-                      height: layoutHeight)
+                      height: height)
     }
 
     // MARK: Animation
@@ -202,7 +209,9 @@ class ModalSheetPresentationController: UIPresentationController {
 
         switch panGestureRecognizer.state {
         case .began, .changed:
-
+            if sheetPresenterDelegate?.presenterCanDrag(self) == false {
+                 return
+            }
             if let interactiveDismissal = interactiveDismissal {
                 let progress = min(1.0, max(0.0, (translation.y - initialTranslation.y) / max(1.0, view.bounds.size.height)))
 
