@@ -1,33 +1,33 @@
 PODS:
-  - SoraUI (1.9.0):
-    - SoraUI/AdaptiveDesign (= 1.9.0)
-    - SoraUI/Animator (= 1.9.0)
-    - SoraUI/Camera (= 1.9.0)
-    - SoraUI/Controls (= 1.9.0)
-    - SoraUI/DetailsView (= 1.9.0)
-    - SoraUI/EmptyState (= 1.9.0)
-    - SoraUI/LoadingView (= 1.9.0)
-    - SoraUI/ModalPresentation (= 1.9.0)
-    - SoraUI/PageLoader (= 1.9.0)
-    - SoraUI/PinView (= 1.9.0)
-    - SoraUI/Skrull (= 1.9.0)
-  - SoraUI/AdaptiveDesign (1.9.0)
-  - SoraUI/Animator (1.9.0)
-  - SoraUI/Camera (1.9.0)
-  - SoraUI/Controls (1.9.0)
-  - SoraUI/DetailsView (1.9.0):
+  - SoraUI (1.9.1):
+    - SoraUI/AdaptiveDesign (= 1.9.1)
+    - SoraUI/Animator (= 1.9.1)
+    - SoraUI/Camera (= 1.9.1)
+    - SoraUI/Controls (= 1.9.1)
+    - SoraUI/DetailsView (= 1.9.1)
+    - SoraUI/EmptyState (= 1.9.1)
+    - SoraUI/LoadingView (= 1.9.1)
+    - SoraUI/ModalPresentation (= 1.9.1)
+    - SoraUI/PageLoader (= 1.9.1)
+    - SoraUI/PinView (= 1.9.1)
+    - SoraUI/Skrull (= 1.9.1)
+  - SoraUI/AdaptiveDesign (1.9.1)
+  - SoraUI/Animator (1.9.1)
+  - SoraUI/Camera (1.9.1)
+  - SoraUI/Controls (1.9.1)
+  - SoraUI/DetailsView (1.9.1):
     - SoraUI/Controls
-  - SoraUI/EmptyState (1.9.0):
+  - SoraUI/EmptyState (1.9.1):
     - SoraUI/Animator
-  - SoraUI/LoadingView (1.9.0):
+  - SoraUI/LoadingView (1.9.1):
     - SoraUI/Controls
-  - SoraUI/ModalPresentation (1.9.0):
+  - SoraUI/ModalPresentation (1.9.1):
     - SoraUI/Animator
     - SoraUI/Controls
-  - SoraUI/PageLoader (1.9.0)
-  - SoraUI/PinView (1.9.0):
+  - SoraUI/PageLoader (1.9.1)
+  - SoraUI/PinView (1.9.1):
     - SoraUI/Controls
-  - SoraUI/Skrull (1.9.0)
+  - SoraUI/Skrull (1.9.1)
 
 DEPENDENCIES:
   - SoraUI (from `../`)
@@ -37,7 +37,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SoraUI: 9dc8789ef397640bc6d1de021476e8fdce503671
+  SoraUI: 57c166bce5a249727343a1e28d6148284f631afc
 
 PODFILE CHECKSUM: bb766dae3a5ddd7acf3a123997936163f86b09c0
 
