@@ -30,6 +30,8 @@ open class AnimatedTextField: UIControl {
 
     private var displayMode: DisplayMode = .placeholder
 
+    private var animating: Bool = false
+
     @IBInspectable
     open var placeholderColor: UIColor = UIColor.lightGray {
         didSet {
@@ -200,6 +202,10 @@ open class AnimatedTextField: UIControl {
     }
 
     private func layoutForMode(_ mode: DisplayMode) {
+        guard !animating else {
+            return
+        }
+
         switch mode {
         case .placeholder:
             layoutForPlaceholderMode()
@@ -286,11 +292,13 @@ open class AnimatedTextField: UIControl {
             color = placeholderColor
 
             center = CGPoint(x: contentInsets.left + titleLabel.bounds.width * scale / 2.0,
-                             y: bounds.midY - titleLabel.bounds.height * scale / 2.0)
+                             y: bounds.midY)
         }
 
         let offsetX = center.x - titleLabel.center.x
         let offsetY = center.y - titleLabel.center.y
+
+        animating = true
 
         let changeClosure: () -> Void = { [weak self] in
             self?.titleLabel.textColor = color
@@ -299,6 +307,8 @@ open class AnimatedTextField: UIControl {
         }
 
         animator.animate(block: changeClosure) { [weak self] _ in
+            self?.animating = false
+
             self?.titleLabel.transform = .identity
             self?.setupStyleForMode(mode)
             self?.layoutForMode(mode)

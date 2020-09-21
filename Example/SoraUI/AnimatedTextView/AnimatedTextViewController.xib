@@ -21,15 +21,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCf-J1-GrN" customClass="BorderedContainerView" customModule="SoraUI">
-                    <rect key="frame" x="20" y="8" width="335" height="50"/>
+                    <rect key="frame" x="20" y="8" width="335" height="52"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAm-qS-JBl" customClass="AnimatedTextField" customModule="SoraUI">
-                            <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="52"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="Choose name"/>
                                 <userDefinedRuntimeAttribute type="number" keyPath="_topInset">
-                                    <real key="value" value="4"/>
+                                    <real key="value" value="8"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="_titleFontSize">
                                     <real key="value" value="12"/>
@@ -43,6 +43,15 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="_textFontSize">
                                     <real key="value" value="16"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_leftInset">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_bottomInset">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_rightInset">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="actionName1Change" destination="-1" eventType="editingChanged" id="zDJ-iO-Sx4"/>
@@ -53,7 +62,7 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="jAm-qS-JBl" secondAttribute="bottom" id="kzb-If-lkC"/>
                         <constraint firstItem="jAm-qS-JBl" firstAttribute="top" secondItem="cCf-J1-GrN" secondAttribute="top" id="lgK-YP-g8T"/>
-                        <constraint firstAttribute="height" constant="50" id="oPG-2J-3ab"/>
+                        <constraint firstAttribute="height" constant="52" id="oPG-2J-3ab"/>
                         <constraint firstItem="jAm-qS-JBl" firstAttribute="leading" secondItem="cCf-J1-GrN" secondAttribute="leading" id="uZs-CV-rPB"/>
                         <constraint firstAttribute="trailing" secondItem="jAm-qS-JBl" secondAttribute="trailing" id="wvu-uf-Vup"/>
                     </constraints>
@@ -74,7 +83,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lb5-BE-8jZ" customClass="BorderedContainerView" customModule="SoraUI">
-                    <rect key="frame" x="20" y="62" width="335" height="50"/>
+                    <rect key="frame" x="20" y="64" width="335" height="50"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aEI-DO-S02" customClass="AnimatedTextField" customModule="SoraUI">
                             <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
