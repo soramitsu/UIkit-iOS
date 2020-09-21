@@ -14,6 +14,7 @@ final class ListViewController: UITableViewController {
         case textCodeInput
         case loadingView
         case actionTitle
+        case animatedTextField
         case segmentedControl
         case details
         case emptyState
@@ -47,6 +48,10 @@ final class ListViewController: UITableViewController {
             navigationController?.pushViewController(controller, animated: true)
         case .actionTitle:
             let controller = ActionTitleViewController(nibName: "ActionTitleViewController", bundle: Bundle.main)
+            navigationController?.pushViewController(controller, animated: true)
+        case .animatedTextField:
+            let controller = AnimatedTextViewController(nibName: "AnimatedTextViewController",
+                                                        bundle: Bundle.main)
             navigationController?.pushViewController(controller, animated: true)
         case .segmentedControl:
             let controller = SegmentedControlViewController(nibName: "SegmentedControlViewController", bundle: Bundle.main)

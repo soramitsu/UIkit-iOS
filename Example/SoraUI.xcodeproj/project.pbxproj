@@ -35,6 +35,8 @@
 		84530A34223A975900AD7598 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84530A33223A975900AD7598 /* DetailsViewController.xib */; };
 		84754C80250FB24400854599 /* ModalAlertPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84754C7E250FB24400854599 /* ModalAlertPresentationViewController.swift */; };
 		84754C81250FB24400854599 /* ModalAlertPresentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84754C7F250FB24400854599 /* ModalAlertPresentationViewController.xib */; };
+		849244972518D93900477C1B /* AnimatedTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849244962518D93900477C1B /* AnimatedTextViewController.swift */; };
+		849244992518D96C00477C1B /* AnimatedTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849244982518D96C00477C1B /* AnimatedTextViewController.xib */; };
 		84FA008F22699DEF005DA950 /* EmptyStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA008E22699DEF005DA950 /* EmptyStateViewController.swift */; };
 		84FA009122699DFF005DA950 /* EmptyStateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA009022699DFF005DA950 /* EmptyStateViewController.xib */; };
 		84FA6E19228965FB003B9D40 /* ModalSheetPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6E18228965FB003B9D40 /* ModalSheetPresentationViewController.swift */; };
@@ -90,6 +92,8 @@
 		84530A33223A975900AD7598 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		84754C7E250FB24400854599 /* ModalAlertPresentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalAlertPresentationViewController.swift; sourceTree = "<group>"; };
 		84754C7F250FB24400854599 /* ModalAlertPresentationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalAlertPresentationViewController.xib; sourceTree = "<group>"; };
+		849244962518D93900477C1B /* AnimatedTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTextViewController.swift; sourceTree = "<group>"; };
+		849244982518D96C00477C1B /* AnimatedTextViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimatedTextViewController.xib; sourceTree = "<group>"; };
 		84FA008E22699DEF005DA950 /* EmptyStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateViewController.swift; sourceTree = "<group>"; };
 		84FA009022699DFF005DA950 /* EmptyStateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateViewController.xib; sourceTree = "<group>"; };
 		84FA6E18228965FB003B9D40 /* ModalSheetPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSheetPresentationViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 		607FACD21AFB9204008FA782 /* Example for SoraUI */ = {
 			isa = PBXGroup;
 			children = (
+				849244952518D92000477C1B /* AnimatedTextView */,
 				84754C79250FB1D600854599 /* ModalAlertPresentation */,
 				F8F85F6B24977456003FDC3F /* ChildViewColntroller */,
 				843F0A8522BC0DEF005B369F /* SkeletonView */,
@@ -313,6 +318,15 @@
 				84754C7F250FB24400854599 /* ModalAlertPresentationViewController.xib */,
 			);
 			path = ModalAlertPresentation;
+			sourceTree = "<group>";
+		};
+		849244952518D92000477C1B /* AnimatedTextView */ = {
+			isa = PBXGroup;
+			children = (
+				849244962518D93900477C1B /* AnimatedTextViewController.swift */,
+				849244982518D96C00477C1B /* AnimatedTextViewController.xib */,
+			);
+			path = AnimatedTextView;
 			sourceTree = "<group>";
 		};
 		84FA008D22699DCF005DA950 /* EmptyStateViewController */ = {
@@ -444,6 +458,7 @@
 				028547E32208873100A40F41 /* SegmentedControlViewController.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				849244992518D96C00477C1B /* AnimatedTextViewController.xib in Resources */,
 				84FA6E1B22898714003B9D40 /* ModalSheetPresentationViewController.xib in Resources */,
 				027A3D9721C156E00020B66A /* TextCodeViewController.xib in Resources */,
 				84530A34223A975900AD7598 /* DetailsViewController.xib in Resources */,
@@ -539,6 +554,7 @@
 				027A3D9C21C15A440020B66A /* LoadingViewController.swift in Sources */,
 				027A3DB721C248880020B66A /* ActionTitleViewController.swift in Sources */,
 				84754C80250FB24400854599 /* ModalAlertPresentationViewController.swift in Sources */,
+				849244972518D93900477C1B /* AnimatedTextViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ListViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				84FA6E19228965FB003B9D40 /* ModalSheetPresentationViewController.swift in Sources */,
