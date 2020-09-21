@@ -10,8 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnimatedTextViewController" customModule="SoraUI_Example" customModuleProvider="target">
             <connections>
-                <outlet property="nameField" destination="jAm-qS-JBl" id="eWn-Y8-NkG"/>
-                <outlet property="networkField" destination="aEI-DO-S02" id="ohl-Ka-i9G"/>
+                <outlet property="name1Field" destination="jAm-qS-JBl" id="74f-vO-Vtd"/>
+                <outlet property="name2Field" destination="aEI-DO-S02" id="31G-J1-AlU"/>
                 <outlet property="view" destination="iN0-l3-epB" id="b2P-Y4-TIZ"/>
             </connections>
         </placeholder>
@@ -28,7 +28,6 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="Choose name"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="text" value="My text"/>
                                 <userDefinedRuntimeAttribute type="number" keyPath="_topInset">
                                     <real key="value" value="4"/>
                                 </userDefinedRuntimeAttribute>
@@ -40,7 +39,14 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="_placeholderFontSize">
                                     <real key="value" value="14"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="_textFontName" value="HelveticaNeue"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_textFontSize">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="actionName1Change" destination="-1" eventType="editingChanged" id="zDJ-iO-Sx4"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -74,17 +80,29 @@
                             <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Choose network"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Choose name"/>
                                 <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                     <color key="value" red="0.81568627449999997" green="0.0078431372550000003" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="_leftInset">
                                     <real key="value" value="4"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="_titleFontName" value="HelveticaNeue"/>
                                 <userDefinedRuntimeAttribute type="number" keyPath="_titleFontSize">
                                     <real key="value" value="12"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="_placeholderFontName" value="HelveticaNeue"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_placeholderFontSize">
+                                    <real key="value" value="14"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="_textFontName" value="HelveticaNeue"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_textFontSize">
+                                    <real key="value" value="16"/>
+                                </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="actionName2Change" destination="-1" eventType="editingChanged" id="peF-ta-g6Q"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

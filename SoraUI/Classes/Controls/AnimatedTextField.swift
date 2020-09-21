@@ -25,7 +25,8 @@ open class AnimatedTextField: UIControl {
     }
 
     private var titleLabel: UILabel!
-    private var textField: UITextField!
+
+    public private(set) var textField: UITextField!
 
     private var displayMode: DisplayMode = .placeholder
 
@@ -187,6 +188,8 @@ open class AnimatedTextField: UIControl {
             textField.font = textFont
 
             addTarget(self, action: #selector(actionTouchUpInside), for: .touchUpInside)
+
+            textField.addTarget(self, action: #selector(actionEditingChanged), for: .editingChanged)
         }
     }
 
@@ -286,10 +289,13 @@ open class AnimatedTextField: UIControl {
                              y: bounds.midY - titleLabel.bounds.height * scale / 2.0)
         }
 
+        let offsetX = center.x - titleLabel.center.x
+        let offsetY = center.y - titleLabel.center.y
+
         let changeClosure: () -> Void = { [weak self] in
             self?.titleLabel.textColor = color
-            self?.titleLabel.center = center
-            self?.titleLabel.transform = CGAffineTransform(scaleX: scale, y: scale)
+            self?.titleLabel.transform = CGAffineTransform(translationX: offsetX, y: offsetY)
+                .scaledBy(x: scale, y: scale)
         }
 
         animator.animate(block: changeClosure) { [weak self] _ in
@@ -307,6 +313,10 @@ open class AnimatedTextField: UIControl {
         textField.becomeFirstResponder()
 
         set(mode: .title, animated: true)
+    }
+
+    @objc func actionEditingChanged() {
+        sendActions(for: .editingChanged)
     }
 }
 
