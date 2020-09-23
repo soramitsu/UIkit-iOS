@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SoraUI'
-  s.version          = '1.9.2'
+  s.version          = '1.9.3'
   s.summary          = 'UI Library for design and layout process simplification.'
 
   s.description      = 'Library contains views and controls that simplifies design and layout implementation manually in code or utilizing interface build.'
@@ -70,6 +70,10 @@ Pod::Spec.new do |s|
 
   s.subspec 'Skrull' do |skl|
     skl.source_files = 'SoraUI/Classes/Skrull/**/*'
+  end
+
+  s.subspec 'Helpers' do |views|
+    views.source_files = 'SoraUI/Classes/Helpers/**/*'
   end
 
   s.test_spec do |ts|
