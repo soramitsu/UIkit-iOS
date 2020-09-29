@@ -73,6 +73,10 @@ Pod::Spec.new do |s|
     skl.source_files = 'SoraUI/Classes/Skrull/**/*'
   end
 
+  s.subspec 'Helpers' do |views|
+    views.source_files = 'SoraUI/Classes/Helpers/**/*'
+  end
+
   s.test_spec do |ts|
       ts.source_files = 'Tests/**/*.swift'
   end
