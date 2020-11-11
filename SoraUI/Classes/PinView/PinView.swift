@@ -37,7 +37,7 @@ public protocol PinViewDelegate: class {
      *  - parameters:
      *      - pinView: current input pin view
      */
-    func didChangeWithInputError(pinView: PinView)
+    func didFailConfirmation(in pinView: PinView)
 }
 
 public protocol PinViewAccessibilitySupportProtocol: class {
@@ -431,7 +431,7 @@ open class PinView: UIView {
     }
 
     private func notifyDelegateOnWrongInputError() {
-        self.delegate?.didChangeWithInputError(pinView: self)
+        self.delegate?.didFailConfirmation(in: self)
     }
 }
 
