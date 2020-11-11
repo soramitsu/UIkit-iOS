@@ -79,4 +79,8 @@ extension PincodeViewController: PinViewDelegate {
     func didSelectAccessoryControl(pinView: PinView) {
         print("Accessory button pressed!")
     }
+
+    func didChangeWithInputError(pinView: PinView) {
+        print("Wrong input error!")
+    }
 }

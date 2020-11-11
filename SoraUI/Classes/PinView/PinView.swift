@@ -31,6 +31,13 @@ public protocol PinViewDelegate: class {
      *      - pinView: current input pin view
      */
     func didSelectAccessoryControl(pinView: PinView)
+
+    /**
+     *  Called on wrong confirmation of pin.
+     *  - parameters:
+     *      - pinView: current input pin view
+     */
+    func didChangeWithInputError(pinView: PinView)
 }
 
 public protocol PinViewAccessibilitySupportProtocol: class {
@@ -363,7 +370,8 @@ open class PinView: UIView {
         case .confirm:
             if securedCharacterFieldsView!.characters != createdCharacters {
                 animateWrongInputError()
-                 securedCharacterFieldsView!.clear()
+                securedCharacterFieldsView!.clear()
+                notifyDelegateOnWrongInputError()
             } else {
                 notifyDelegateOnCompletion()
             }
@@ -420,6 +428,10 @@ open class PinView: UIView {
 
     private func notifyDelegateOnStateChange(from state: CreationState) {
         self.delegate?.didChange(pinView: self, from: state)
+    }
+
+    private func notifyDelegateOnWrongInputError() {
+        self.delegate?.didChangeWithInputError(pinView: self)
     }
 }
 
