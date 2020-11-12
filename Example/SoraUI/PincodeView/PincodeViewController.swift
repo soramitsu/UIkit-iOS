@@ -80,7 +80,7 @@ extension PincodeViewController: PinViewDelegate {
         print("Accessory button pressed!")
     }
 
-    func didFailConfirmation(in: PinView) {
+    func didFailConfirmation(pinView: PinView) {
         print("Wrong input error!")
     }
 }
