@@ -93,6 +93,12 @@ open class BaseActionControl: UIControl {
         }
     }
 
+    open var contentInsets: UIEdgeInsets = .zero {
+        didSet {
+            invalidateLayout()
+        }
+    }
+
     // MARK: Initialization
 
     override public init(frame: CGRect) {
@@ -123,7 +129,8 @@ open class BaseActionControl: UIControl {
             + indicatorSize.width
         let contentWidth = max(preferredWidth, 0.0)
 
-        return CGSize(width: contentWidth, height: contentHeight)
+        return CGSize(width: contentWidth + contentInsets.left + contentInsets.right,
+                      height: contentHeight + contentInsets.top + contentInsets.bottom)
     }
 
     override open func sizeToFit() {
@@ -141,6 +148,7 @@ open class BaseActionControl: UIControl {
 
         if bounds.width < contentSize.width {
             titleSize.width = bounds.width - horizontalSpacing - indicatorSize.width
+                - contentInsets.left - contentInsets.right
             contentSize.width = bounds.width
         }
 
@@ -149,15 +157,24 @@ open class BaseActionControl: UIControl {
 
         switch layoutType {
         case .fixed:
-            titleOrigin = CGPoint(x: bounds.midX - contentSize.width / 2.0,
-                                  y: bounds.midY - titleSize.height / 2.0)
+            let titleX = bounds.midX - contentSize.width / 2.0 + contentInsets.left
+            let titleY = contentInsets.top / 2.0 + bounds.midY - titleSize.height / 2.0 - contentInsets.bottom / 2.0
+            titleOrigin = CGPoint(x: titleX,
+                                  y: titleY)
+
+            let indicatorY = contentInsets.top / 2.0 + bounds.midY - indicatorSize.height / 2.0
+                + verticalDisplacement - contentInsets.bottom / 2.0
             indicatorOrigin = CGPoint(x: titleOrigin.x + titleSize.width + horizontalSpacing,
-                                      y: bounds.midY - indicatorSize.height / 2.0 + verticalDisplacement)
+                                      y: indicatorY)
         case .flexible:
-            titleOrigin = CGPoint(x: bounds.minX,
-                                  y: bounds.midY - titleSize.height / 2.0)
-            indicatorOrigin = CGPoint(x: bounds.maxX - indicatorSize.width,
-                                      y: bounds.midY - indicatorSize.height / 2.0 + verticalDisplacement)
+            let titleY = contentInsets.top / 2.0 + bounds.midY - titleSize.height / 2.0 - contentInsets.bottom / 2.0
+            titleOrigin = CGPoint(x: bounds.minX + contentInsets.left,
+                                  y: titleY)
+
+            let indicatorY = contentInsets.top / 2.0 + bounds.midY - indicatorSize.height / 2.0
+                + verticalDisplacement - contentInsets.bottom / 2.0
+            indicatorOrigin = CGPoint(x: bounds.maxX - indicatorSize.width - contentInsets.right,
+                                      y: indicatorY)
         }
 
         title?.frame = CGRect(origin: titleOrigin, size: titleSize)
