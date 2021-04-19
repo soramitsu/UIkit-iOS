@@ -15,7 +15,7 @@ public extension EmptyStateViewOwnerProtocol where Self: UIViewController {
     private var emptyStateView: UIView? {
         get {
             return objc_getAssociatedObject(self,
-                                            &EmptyStateConstants.viewKey) as? EmptyStateView
+                                            &EmptyStateConstants.viewKey) as? UIView
         }
 
         set {
@@ -70,7 +70,7 @@ public extension EmptyStateViewOwnerProtocol where Self: UIViewController {
 
         let newEmptyStateView = emptyStateDataSource.viewForEmptyState ?? createDefaultEmptyStateView()
         let contentView = contentViewForEmptyState
-        contentView.insertSubview(newEmptyStateView, at: 0)
+        contentView.addSubview(newEmptyStateView)
 
         self.emptyStateView = newEmptyStateView
     }
@@ -195,4 +195,11 @@ public extension EmptyStateViewOwnerProtocol where Self: UIViewController {
     var dismissAnimatorForEmptyState: ViewAnimatorProtocol? {
         return nil
     }
+
+    var imageForEmptyState: UIImage? { nil }
+    var titleForEmptyState: String? { nil }
+    var titleColorForEmptyState: UIColor? { nil }
+    var titleFontForEmptyState: UIFont? { nil }
+    var verticalSpacingForEmptyState: CGFloat? { nil }
+    var trimStrategyForEmptyState: EmptyStateView.TrimStrategy { .none }
 }
