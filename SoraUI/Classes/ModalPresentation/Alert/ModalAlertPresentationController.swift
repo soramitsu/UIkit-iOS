@@ -181,7 +181,7 @@ class ModalAlertPresentationController: UIPresentationController {
     }
 
     func dismiss(animated: Bool) {
-        presentingViewController.dismiss(animated: animated, completion: nil)
+        presentedViewController.dismiss(animated: animated, completion: nil)
     }
 
     // MARK: Action
