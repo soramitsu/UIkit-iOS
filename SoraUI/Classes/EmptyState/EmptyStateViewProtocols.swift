@@ -5,7 +5,7 @@
 
 import UIKit
 
-public protocol EmptyStateDelegate: class {
+public protocol EmptyStateDelegate: AnyObject {
     var shouldDisplayEmptyState: Bool { get }
 }
 
@@ -19,7 +19,7 @@ public protocol EmptyStateDataSource {
     var trimStrategyForEmptyState: EmptyStateView.TrimStrategy { get }
 }
 
-public protocol EmptyStateViewOwnerProtocol: class {
+public protocol EmptyStateViewOwnerProtocol: AnyObject {
     var emptyStateDelegate: EmptyStateDelegate { get }
     var emptyStateDataSource: EmptyStateDataSource { get }
 
@@ -33,7 +33,7 @@ public protocol EmptyStateViewOwnerProtocol: class {
     var dismissAnimatorForEmptyState: ViewAnimatorProtocol? { get }
 }
 
-public protocol EmptyStateListViewModelProtocol: class {
+public protocol EmptyStateListViewModelProtocol: AnyObject {
     var emptyStateView: UIView { get }
 
     var displayInsetsForEmptyState: UIEdgeInsets { get }

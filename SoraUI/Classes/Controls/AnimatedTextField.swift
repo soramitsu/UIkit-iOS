@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol AnimatedTextFieldDelegate: class {
+public protocol AnimatedTextFieldDelegate: AnyObject {
     func animatedTextFieldShouldReturn(_ textField: AnimatedTextField) -> Bool
     func animatedTextField(_ textField: AnimatedTextField,
                            shouldChangeCharactersIn range: NSRange,

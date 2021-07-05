@@ -5,13 +5,13 @@
 
 import UIKit
 
-public protocol NumpadViewDelegate: class {
+public protocol NumpadViewDelegate: AnyObject {
     func numpadView(_ view: NumpadView, didSelectNumAt index: Int)
     func numpadViewDidSelectBackspace(_ view: NumpadView)
     func numpadViewDidSelectAccessoryControl(_ view: NumpadView)
 }
 
-public protocol NumpadAccessibilitySupportProtocol: class {
+public protocol NumpadAccessibilitySupportProtocol: AnyObject {
     func setupKeysAccessibilityIdWith(format: String?)
     func setupBackspace(accessibilityId: String?)
     func setupAccessory(accessibilityId: String?)

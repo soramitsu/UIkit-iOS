@@ -8,7 +8,7 @@ import AudioToolbox
 
 // swiftlint:disable type_body_length file_length
 
-public protocol PinViewDelegate: class {
+public protocol PinViewDelegate: AnyObject {
     /**
      *  Called when current input field becomes filled.
      *  - parameters:
@@ -40,7 +40,7 @@ public protocol PinViewDelegate: class {
     func didFailConfirmation(pinView: PinView)
 }
 
-public protocol PinViewAccessibilitySupportProtocol: class {
+public protocol PinViewAccessibilitySupportProtocol: AnyObject {
     func setupInputField(accessibilityId: String?)
 }
 
