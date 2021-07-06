@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol ListViewLayoutStrategyProtocol: class {
+public protocol ListViewLayoutStrategyProtocol: AnyObject {
     func layout(views: [UIView], in rect: CGRect)
 }
 

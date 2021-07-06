@@ -5,7 +5,7 @@
 
 import UIKit
 
-public protocol CharacterFieldsViewProtocol: class {
+public protocol CharacterFieldsViewProtocol: AnyObject {
     var numberOfCharacters: Int { get set }
     var isComplete: Bool { get }
     var isEmpty: Bool { get }

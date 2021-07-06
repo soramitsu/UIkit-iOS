@@ -5,16 +5,16 @@
 
 import Foundation
 
-public protocol ModalViewProtocol: class {
+public protocol ModalViewProtocol: AnyObject {
     var presenter: ModalPresenterProtocol? { get set }
     var context: AnyObject? { get set }
 }
 
-public protocol ModalPresenterProtocol: class {
+public protocol ModalPresenterProtocol: AnyObject {
     func hide(view: ModalViewProtocol, animated: Bool)
 }
 
-public protocol ModalPresenterDelegate: class {
+public protocol ModalPresenterDelegate: AnyObject {
     func presenterShouldHide(_ presenter: ModalPresenterProtocol) -> Bool
     func presenterDidHide(_ presenter: ModalPresenterProtocol)
 }

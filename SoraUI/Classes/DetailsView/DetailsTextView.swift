@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol DetailsTextViewDelegate: class {
+public protocol DetailsTextViewDelegate: AnyObject {
     func didChangeExpandingState(in detailsView: DetailsTextView)
 }
 

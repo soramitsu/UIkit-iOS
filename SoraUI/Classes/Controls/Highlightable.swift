@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-public protocol Highlightable: class {
+public protocol Highlightable: AnyObject {
     func set(highlighted: Bool, animated: Bool)
 }
 
