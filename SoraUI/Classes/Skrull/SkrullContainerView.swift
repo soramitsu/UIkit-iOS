@@ -34,6 +34,10 @@ final class SkrullContainerView: UIView {
         items.flatMap({ $0 }).forEach { addSubview($0) }
     }
 
+    func invalidateLayout() {
+        performLayout()
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -41,6 +45,10 @@ final class SkrullContainerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        performLayout()
+    }
+
+    private func performLayout() {
         for (row, colums) in items.enumerated() {
             for (column, item) in colums.enumerated() {
                 layout(item: item, row: row, column: column)

@@ -14,8 +14,8 @@ final class SkrullView: UIView {
         static let animationDuration: TimeInterval = 1.0
     }
 
-    let decorations: [Decoration]
-    let skeletons: [Skeleton]
+    private(set) var decorations: [Decoration]
+    private(set) var skeletons: [Skeleton]
 
     private let skeletonAnimator: SkeletonAnimatorProtocol = {
         return LocationSkeletonAnimator(startLocations: Constants.animationStartPositions,
@@ -28,8 +28,15 @@ final class SkrullView: UIView {
     private var fillSkeletonStartColor: UIColor
     private var fillSkeletonEndColor: UIColor
 
-    init(size: CGSize, decorations: [Decoration], skeletons: [Skeleton],
-         fillSkeletonStartColor: UIColor?, fillSkeletonEndColor: UIColor?) {
+    private var isAnimating: Bool = false
+
+    init(
+        size: CGSize,
+        decorations: [Decoration],
+        skeletons: [Skeleton],
+        fillSkeletonStartColor: UIColor?,
+        fillSkeletonEndColor: UIColor?
+    ) {
         self.decorations = decorations
         self.skeletons = skeletons
         self.fillSkeletonStartColor = fillSkeletonStartColor ?? UIColor.lightGray
@@ -40,6 +47,45 @@ final class SkrullView: UIView {
         configure()
     }
 
+    func update(size: CGSize, decorations: [Decoration], skeletons: [Skeleton]) {
+        self.decorations = decorations
+
+        frame = CGRect(origin: .zero, size: size)
+
+        let oldCount = self.skeletons.count
+        let newCount = skeletons.count
+
+        self.skeletons = skeletons
+
+        if oldCount > newCount {
+            let layersToRemove = layers.suffix(oldCount - newCount)
+
+            for layer in layersToRemove {
+                layer.removeFromSuperlayer()
+            }
+
+            self.layers = Array(layers.prefix(newCount))
+        }
+
+        let maybeNewLayers: [CAGradientLayer]?
+
+        if oldCount < newCount {
+            let newSkeletons = Array(skeletons.suffix(newCount - oldCount))
+            maybeNewLayers = configureLayers(for: newSkeletons)
+        } else {
+            maybeNewLayers = nil
+        }
+
+        for (index, layer) in layers.enumerated() {
+            configurePosition(for: layer, skeleton: skeletons[index])
+            configureLayerStyle(for: layer, skeleton: skeletons[index])
+        }
+
+        if let newLayers = maybeNewLayers, isAnimating {
+            newLayers.forEach { skeletonAnimator.startAnimation(on: $0)}
+        }
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -47,29 +93,25 @@ final class SkrullView: UIView {
     private func configure() {
         backgroundColor = .clear
 
-        configureLayers()
+        configureLayers(for: skeletons)
     }
 
-    private func configureLayers() {
+    @discardableResult
+    private func configureLayers(for skeletons: [Skeleton]) -> [CAGradientLayer] {
         skeletons.forEach { skeleton in
             let skeletonLayer = createLayer(for: skeleton)
             layer.addSublayer(skeletonLayer)
             layers.append(skeletonLayer)
         }
+
+        return Array(layers.suffix(skeletons.count))
     }
 
     private func createLayer(for skeleton: Skeleton) -> CAGradientLayer {
-        let startColor = skeleton.startColor?.cgColor ?? fillSkeletonStartColor.cgColor
-        let endColor = skeleton.endColor?.cgColor ?? fillSkeletonEndColor.cgColor
-
         let skeletonLayer = CAGradientLayer()
 
         configurePosition(for: skeletonLayer, skeleton: skeleton)
-
-        skeletonLayer.startPoint = Constants.gradientStartPoint
-        skeletonLayer.endPoint = Constants.gradientEndPoint
-        skeletonLayer.colors = [startColor, endColor, startColor]
-        skeletonLayer.locations = Constants.animationStartPositions
+        configureLayerStyle(for: skeletonLayer, skeleton: skeleton)
 
         return skeletonLayer
     }
@@ -107,6 +149,16 @@ final class SkrullView: UIView {
 
             layer.mask = shapeLayer
         }
+    }
+
+    private func configureLayerStyle(for layer: CAGradientLayer, skeleton: Skeleton) {
+        let startColor = skeleton.startColor?.cgColor ?? fillSkeletonStartColor.cgColor
+        let endColor = skeleton.endColor?.cgColor ?? fillSkeletonEndColor.cgColor
+
+        layer.startPoint = Constants.gradientStartPoint
+        layer.endPoint = Constants.gradientEndPoint
+        layer.colors = [startColor, endColor, startColor]
+        layer.locations = Constants.animationStartPositions
     }
 
     // MARK: Drawing decorations
@@ -176,10 +228,22 @@ final class SkrullView: UIView {
 
 extension SkrullView: Skrullable {
     func startSkrulling() {
+        guard !isAnimating else {
+            return
+        }
+
+        isAnimating = true
+
         layers.forEach { skeletonAnimator.startAnimation(on: $0) }
     }
 
     func stopSkrulling() {
+        guard isAnimating else {
+            return
+        }
+
+        isAnimating = false
+
         layers.forEach { skeletonAnimator.stopAnimation(on: $0) }
     }
 }

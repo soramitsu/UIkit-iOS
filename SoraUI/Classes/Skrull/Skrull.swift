@@ -81,4 +81,20 @@ public final class Skrull {
 
         return containerView
     }
+
+    public func updateSkeletons(in view: SkrullableView) {
+        guard let containerView = view as? SkrullContainerView else {
+            return
+        }
+
+        let allViews = containerView.items.flatMap { $0 }
+
+        for view in allViews {
+            if let view = view as? SkrullView {
+                view.update(size: size, decorations: decorations, skeletons: skeletons)
+            }
+        }
+
+        containerView.invalidateLayout()
+    }
 }
